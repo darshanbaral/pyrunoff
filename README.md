@@ -6,23 +6,27 @@
 
 We recommend installing with `uv` for a fast, reproducible Python environment.
 
-### Install from GitHub
+The current PyPI release is `0.1.0a1`, an alpha release, and requires Python 3.14 or later. `pip` commands include `--pre` to select this prerelease.
+
+### Recommended: Install with Numba acceleration
 
 ```bash
-uv add "git+https://github.com/darshanbaral/pyrunoff.git"
+uv add "pyrunoff[with-numba]"
+# or
+python -m pip install --pre "pyrunoff[with-numba]"
 ```
 
-This records the dependency in the project configuration and installs it into the active `uv` environment.
+Numba compiles numerical kernels for faster execution on long time series.
 
-The package requires Python 3.14 or later.
-
-To install the optional Numba extra from a local checkout, run:
+### Install without Numba
 
 ```bash
-uv sync --extra with-numba
+uv add pyrunoff
+# or
+python -m pip install --pre pyrunoff
 ```
 
-The numerical kernels can use Numba to compile hot loops for faster execution on large time series. Without Numba, the library still works but runs those kernels in Python mode and may be slower for long simulations.
+Without Numba, the library still works but runs its numerical kernels in Python mode, which may be slower for long simulations.
 
 ## Core API
 
