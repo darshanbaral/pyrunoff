@@ -1,0 +1,68 @@
+[project]
+name = "pyrunoff"
+version = "0.1.0a1"
+description = "Hydrologic runoff and routing calculations in Python; not ready for use"
+readme = "README.md"
+requires-python = ">=3.14"
+keywords = ["hydrology", "runoff", "routing", "water-resources"]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Hydrology",
+]
+
+authors = [
+    { name = "Darshan Baral" },
+]
+
+dependencies = [
+    "numpy>=2.4.1",
+    "pandas>=3.0.0",
+]
+
+[project.optional-dependencies]
+with-numba = [
+    "numba>=0.64.0",
+]
+all = [
+    "pyrunoff[with-numba]",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel>=7.1.0",
+    "matplotlib>=3.11.2",
+    "pytest>=9.0.2",
+    "ruff>=0.16.10",
+]
+
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyrunoff"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "UP",
+]
