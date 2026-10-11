@@ -3,11 +3,14 @@ from dataclasses import dataclass
 import numpy
 import pandas
 
-from pyrunoff.utils import DischargeSeries, ElevationSeries, StorageSeries
+from pyrunoff.reservoir.reservoir_utils import ElevationStorage, StorageDischarge
+from pyrunoff.utils import (
+    DischargeSeries,
+    ElevationSeries,
+    StorageSeries,
+    validate_series_type,
+)
 from pyrunoff.utils.compat import jit
-from pyrunoff.utils.tso import fix_ts_end
-
-from .reservoir_utils import ElevationStorage, StorageDischarge
 
 
 @dataclass(slots=True)
@@ -48,6 +51,7 @@ class LevelPool:
 
     def __post_init__(self):
         """Validate the storage conversion factor and apply the optional end."""
+        validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
         if self.storage_adjustment_factor <= 0:
             raise ValueError("storage_adjustment_factor must be greater than zero.")
         self._fix_end()
@@ -55,11 +59,7 @@ class LevelPool:
     def _fix_end(self):
         """Extend or truncate inflow data to the configured end time."""
         if self.end is not None:
-            self.inflow_series.data = fix_ts_end(
-                ts=self.inflow_series.data,
-                end=self.end,
-                time_step=self.inflow_series.time_step,
-            )
+            self.inflow_series = self.inflow_series.fix_end(self.end)
 
     def route(self) -> LevelPoolOutput:
         """Route inflow and return outlet flows, total flow, storage, and elevation.
@@ -95,9 +95,10 @@ class LevelPool:
                 float(min(time_step, pandas.Timedelta(minutes=1)).total_seconds()),
             )
             outflow = pandas.DataFrame(outflow_arr, index=inflow.index, columns=names)
-            storage = pandas.Series(
-                storage_arr, index=inflow.index, name="storage"
-            ) / self.storage_adjustment_factor
+            storage = (
+                pandas.Series(storage_arr, index=inflow.index, name="storage")
+                / self.storage_adjustment_factor
+            )
             if not is_original_index:
                 outflow = outflow.loc[original_index]
                 storage = storage.loc[original_index]

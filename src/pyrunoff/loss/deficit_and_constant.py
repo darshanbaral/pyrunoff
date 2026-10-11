@@ -4,7 +4,7 @@ from datetime import timedelta
 import numpy
 import pandas
 
-from pyrunoff.utils import validate_non_negative
+from pyrunoff.utils import validate_non_negative, validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
 from pyrunoff.utils.time_series import RainfallSeries
@@ -53,6 +53,7 @@ class DeficitConstant:
 
     def __post_init__(self):
         """Validate the initial model parameters."""
+        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         self.update_params(
             self.max_deficit,
             self.constant_loss,
@@ -90,12 +91,15 @@ class DeficitConstant:
             validate_non_negative(constant_loss, "constant_loss")
             self.constant_loss = constant_loss
 
-        if recover_deficit is not None:
-            self.recover_deficit = recover_deficit
-
-        if recovery_time is not None:
-            self.validate_recovery_time(recovery_time, self.recover_deficit)
-            self.recovery_time = recovery_time
+        # recovery_time is required whenever recovery is on, so check the pair
+        # as it will be after this update
+        if recover_deficit is None:
+            recover_deficit = self.recover_deficit
+        if recovery_time is None:
+            recovery_time = self.recovery_time
+        self.validate_recovery_time(recovery_time, recover_deficit)
+        self.recover_deficit = recover_deficit
+        self.recovery_time = recovery_time
 
         if initial_deficit is not None:
             validate_non_negative(initial_deficit, "initial_deficit")

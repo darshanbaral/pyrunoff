@@ -1,3 +1,3 @@
-from .muskingum import Muskingum
+from .muskingum import Muskingum, MuskingumOutput
 
-__all__ = ["Muskingum"]
+__all__ = ["Muskingum", "MuskingumOutput"]

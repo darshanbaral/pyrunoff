@@ -4,10 +4,19 @@ from datetime import timedelta
 import numpy
 import pandas
 
-from pyrunoff.utils import DischargeSeries
+from pyrunoff.utils import DischargeSeries, validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import RELATIVE_EPSILON, SECONDS_PER_HOUR
-from pyrunoff.utils.tso import fix_ts_end
+
+
+@dataclass(slots=True)
+class MuskingumOutput:
+    """Results returned by :meth:`Muskingum.route`.
+
+    :param total_outflow: Routed discharge leaving the reach.
+    """
+
+    total_outflow: DischargeSeries
 
 
 @dataclass(slots=True)
@@ -27,17 +36,14 @@ class Muskingum:
 
     def __post_init__(self):
         """Apply the optional end time and validate routing parameters."""
+        validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
         self._fix_end()
         self.update_params(self.k, self.x)
 
     def _fix_end(self):
         """Extend or truncate inflow data to the configured end time."""
         if self.end is not None:
-            self.inflow_series.data = fix_ts_end(
-                ts=self.inflow_series.data,
-                end=self.end,
-                time_step=self.inflow_series.time_step,
-            )
+            self.inflow_series = self.inflow_series.fix_end(self.end)
 
     @staticmethod
     def validate_params(k: pandas.Timedelta, x: float, time_step: pandas.Timedelta):
@@ -69,11 +75,11 @@ class Muskingum:
 
     def route(
         self,
-    ) -> DischargeSeries:
+    ) -> MuskingumOutput:
         """
         Route inflow through the reach and return the resulting discharge.
 
-        :return: Routed discharge series.
+        :return: Typed output holding the routed discharge series.
         """
 
         inflow = self.inflow_series.data
@@ -82,8 +88,10 @@ class Muskingum:
         x = self.x
 
         if inflow.empty:
-            return DischargeSeries(
-                inflow.copy(), sorted=True, _time_step=self.inflow_series.time_step
+            return MuskingumOutput(
+                DischargeSeries(
+                    inflow.copy(), sorted=True, _time_step=self.inflow_series.time_step
+                )
             )
 
         time_step = self.inflow_series.time_step
@@ -102,8 +110,10 @@ class Muskingum:
 
         outflow = pandas.Series(outflow_arr, index=inflow.index)
 
-        return DischargeSeries(
-            outflow, sorted=True, _time_step=self.inflow_series.time_step
+        return MuskingumOutput(
+            DischargeSeries(
+                outflow, sorted=True, _time_step=self.inflow_series.time_step
+            )
         )
 
 

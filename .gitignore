@@ -1,63 +1,41 @@
 # Python environments
 .python-version
-venv/
 .venv/
-env/
-ENV/
-venv.bak/
-env.bak/
+venv/
 .env
 
-# Python cache & packaging artifacts
+# Build artifacts
 __pycache__/
 *.py[cod]
-*$py.class
-.Python
 *.egg-info/
-*.egg
-MANIFEST
-.eggs/
-develop-eggs/
-eggs/
-build/
-dist/
-downloads/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
+/build/
+/dist/
 
-# Test, coverage & tool caches
+# Test & tool caches
 .pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.hypothesis/
 .coverage
 .coverage.*
 coverage.xml
 htmlcov/
-.tox/
-.nox/
-.hypothesis/
-.mypy_cache/
-.pyre/
-.pytype/
-.ruff_cache/
 
-# IDEs & editors
+# Editors & OS
 .idea/
+.DS_Store
 
 # Notebooks
-notebooks/
+/notebooks/
 .ipynb_checkpoints/
 
-# External tools & software
-HEC-HMS/
+# External tools
+/HEC_HMS/
 SyncToy*.dat
 
-# Generated output & temporary files
-output/
-temp*
-pyrunoff_bug*
-changelog/
-data/
-tests/test_data/
+# Local output, scratch files & notes
+/output/
+/temp*
+/pyrunoff_bug*
+/changelog/
+/AGENTS.md

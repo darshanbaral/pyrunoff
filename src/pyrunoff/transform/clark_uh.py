@@ -4,10 +4,15 @@ from datetime import timedelta
 import numpy
 import pandas
 
-from pyrunoff.utils import DischargeSeries, RainfallSeries, validate_positive
+from pyrunoff.utils import (
+    DischargeSeries,
+    RainfallSeries,
+    validate_positive,
+    validate_series_type,
+)
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
-from pyrunoff.utils.tso import check_time_step, fix_ts_end
+from pyrunoff.utils.tso import check_time_step
 
 
 @dataclass(slots=True)
@@ -31,10 +36,11 @@ class ClarkUh:
     storage_r: timedelta | pandas.Timedelta
     compute_time_step: timedelta | pandas.Timedelta | None = timedelta(minutes=1)
     resampled_data: pandas.Series | None = None
-    end: pandas.Timestamp = None
+    end: pandas.Timestamp | None = None
 
     def __post_init__(self):
         """Validate the basin parameters and prepare rainfall for routing."""
+        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         validate_positive(self.basin_area, "basin_area")
         self._fix_end()
         self.update_params(self.tc, self.storage_r)
@@ -92,11 +98,8 @@ class ClarkUh:
         """Validate the optional rainfall resampling interval."""
         if self.compute_time_step is not None:
             self.compute_time_step = pandas.Timedelta(self.compute_time_step)
-            if (
-                self.rainfall_series.time_step > self.compute_time_step
-                and self.compute_time_step <= pandas.Timedelta(minutes=0)
-            ):
-                raise ValueError("'compute_time_step' must be greater than 1 minute.")
+            if self.compute_time_step <= pandas.Timedelta(0):
+                raise ValueError("'compute_time_step' must be greater than zero.")
 
             if self.rainfall_series.time_step.value % self.compute_time_step.value != 0:
                 raise ValueError(
@@ -115,14 +118,7 @@ class ClarkUh:
     def _fix_end(self):
         """Extend or truncate rainfall data to the configured end time."""
         if self.end is not None:
-            original_data = self.rainfall_series.data
-            fixed_data = fix_ts_end(
-                original_data, self.end, self.rainfall_series.time_step
-            )
-            new_rainfall_series = RainfallSeries(
-                fixed_data, sorted=True, _time_step=self.rainfall_series.time_step
-            )
-            self.rainfall_series = new_rainfall_series
+            self.rainfall_series = self.rainfall_series.fix_end(self.end)
 
     @staticmethod
     def get_cumulative_area_fraction(time_step: pandas.Timedelta, tc: pandas.Timedelta):
@@ -266,38 +262,3 @@ def _clark_reservoir_kernel(
         idx += 1
 
     return uh_ordinates[:idx], running_volume
-
-
-if __name__ == "__main__":
-    hms_data = pandas.read_csv(
-        "../../../tests/test_data/clarks_uh/hms_scs2_5in.txt",
-        sep="\t",
-        header=None,
-        na_values=["", " "],
-    )
-    hms_data.columns = [
-        "date",
-        "time",
-        "precip_in",
-        "precip_loss_in",
-        "precip_excess_in",
-        "direct_flow_cfs",
-        "baseflow_cfs",
-        "total_flow_cfs",
-    ]
-    hms_data["timestamp"] = pandas.to_datetime(
-        hms_data["date"] + "T" + hms_data["time"], format="%d%b%YT%H:%M"
-    )
-    hms_data = hms_data.set_index("timestamp")
-
-    clark_uh = ClarkUh(
-        rainfall_series=RainfallSeries(hms_data["precip_excess_in"].bfill()),
-        basin_area=1280,
-        tc=timedelta(hours=2),
-        storage_r=timedelta(hours=3),
-    )
-
-    results = clark_uh.route()
-    py_flow = results.data.round(2)
-
-    print({"max": py_flow.max(), "idx_max": py_flow.idxmax()})

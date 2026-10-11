@@ -4,10 +4,14 @@ from datetime import timedelta
 import numpy
 import pandas
 
-from pyrunoff.utils import DischargeSeries, RainfallSeries, validate_positive
+from pyrunoff.utils import (
+    DischargeSeries,
+    RainfallSeries,
+    validate_positive,
+    validate_series_type,
+)
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import ACRE_TO_SQFEET, RELATIVE_EPSILON, SECONDS_PER_HOUR
-from pyrunoff.utils.tso import fix_ts_end
 
 
 @dataclass(slots=True)
@@ -32,6 +36,7 @@ class LinearReservoir:
 
     def __post_init__(self):
         """Validate parameters and apply the optional end time."""
+        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         validate_positive(self.basin_area, "basin_area")
         self.fix_end()
         self.update_params(
@@ -41,16 +46,7 @@ class LinearReservoir:
     def fix_end(self):
         """Extend or truncate rainfall data to the configured end time."""
         if self.end is not None:
-            new_rainfall_data = fix_ts_end(
-                self.rainfall_series.data,
-                end=self.end,
-                time_step=self.rainfall_series.time_step,
-            )
-            self.rainfall_series = RainfallSeries(
-                new_rainfall_data,
-                sorted=True,
-                _time_step=self.rainfall_series.time_step,
-            )
+            self.rainfall_series = self.rainfall_series.fix_end(self.end)
 
     @staticmethod
     def validate_gw_fraction(gw_fraction):
@@ -62,7 +58,7 @@ class LinearReservoir:
     def validate_initial_q(initial_q):
         """Require the initial discharge to be non-negative."""
         if initial_q < 0:
-            raise ValueError("'initial_q' should be greater than 0")
+            raise ValueError("'initial_q' should not be negative")
 
     @staticmethod
     def validate_k(k: pandas.Timedelta):
@@ -139,7 +135,7 @@ class LinearReservoir:
         )
 
 
-@jit(nopython=True, cache=True)  # Added
+@jit(nopython=True, cache=True)
 def _linear_reservoir_kernel(inflow, initial_q, c1, c2):
     """Calculate discharge using the linear-reservoir recurrence."""
     n = len(inflow)

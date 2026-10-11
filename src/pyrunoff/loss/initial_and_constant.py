@@ -4,7 +4,7 @@ from datetime import timedelta
 import numpy
 import pandas
 
-from pyrunoff.utils import validate_non_negative
+from pyrunoff.utils import validate_non_negative, validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
 from pyrunoff.utils.time_series import RainfallSeries
@@ -41,6 +41,7 @@ class InitialConstant:
 
     def __post_init__(self):
         """Validate loss parameters and the optional reset duration."""
+        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         self.update_params(self.initial_loss, self.constant_loss)
         if (
             self.reset_initial_duration is not None

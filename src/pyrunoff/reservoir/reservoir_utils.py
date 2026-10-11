@@ -3,7 +3,7 @@ from dataclasses import dataclass
 import pandas
 
 
-def check(
+def check_series_pair(
     series1: pandas.Series,
     series2: pandas.Series,
     name1: str,
@@ -50,7 +50,7 @@ class ElevationStorage:
 
     def __post_init__(self):
         """Validate the elevation and storage series."""
-        check(self.elevation, self.storage, "elevation", "storage")
+        check_series_pair(self.elevation, self.storage, "elevation", "storage")
 
 
 @dataclass(slots=True)
@@ -66,4 +66,4 @@ class StorageDischarge:
 
     def __post_init__(self):
         """Validate the storage and discharge series."""
-        check(self.storage, self.discharge, "storage", "discharge")
+        check_series_pair(self.storage, self.discharge, "storage", "discharge")

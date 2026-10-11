@@ -1,0 +1,5067 @@
+{
+  "basins": {
+    "basin_63": {
+      "basin_area": {
+        "value": 465.4581
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3384,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 30460,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.54
+          },
+          "constant_loss": {
+            "value": 0.368
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 399600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_4": {
+      "basin_area": {
+        "value": 1479.9855
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2333,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 20995,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.67
+          },
+          "constant_loss": {
+            "value": 0.367
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 54000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_26": {
+      "basin_area": {
+        "value": 568.463
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1168,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 10512,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.8
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.29
+          },
+          "k": {
+            "value": 75600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_91": {
+      "basin_area": {
+        "value": 114.6562
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8100,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.63
+          },
+          "constant_loss": {
+            "value": 0.393
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 43200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_108": {
+      "basin_area": {
+        "value": 863.5916
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3566,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 32094,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.204
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 158400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_33": {
+      "basin_area": {
+        "value": 467.8725
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1215,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 10933,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 1.0
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.28
+          },
+          "k": {
+            "value": 75600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_92": {
+      "basin_area": {
+        "value": 632.95
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1200,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 10804,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.6
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 50400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_61": {
+      "basin_area": {
+        "value": 699.7642
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 4915,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 44233,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.7
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.39
+          },
+          "k": {
+            "value": 514800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_8": {
+      "basin_area": {
+        "value": 215.7749
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8100,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.57
+          },
+          "constant_loss": {
+            "value": 0.132
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 50400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_75": {
+      "basin_area": {
+        "value": 171.1993
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2372,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21352,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.43
+          },
+          "constant_loss": {
+            "value": 0.132
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 147600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_28": {
+      "basin_area": {
+        "value": 813.0455
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2235,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 20113,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.57
+          },
+          "constant_loss": {
+            "value": 0.279
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 115200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_57": {
+      "basin_area": {
+        "value": 425.213
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3435,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 30920,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.33
+          },
+          "constant_loss": {
+            "value": 0.157
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 183600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_53": {
+      "basin_area": {
+        "value": 372.4013
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1140,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 10260,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 1.22
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.33
+          },
+          "k": {
+            "value": 90000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_56": {
+      "basin_area": {
+        "value": 1915.303
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1850,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 16654,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.73
+          },
+          "constant_loss": {
+            "value": 0.45
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 54000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_6": {
+      "basin_area": {
+        "value": 958.9985
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2328,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 20952,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.116
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.08
+          },
+          "k": {
+            "value": 28800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_52": {
+      "basin_area": {
+        "value": 667.5673
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1753,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 15775,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.63
+          },
+          "constant_loss": {
+            "value": 0.32
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.17
+          },
+          "k": {
+            "value": 57600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_97": {
+      "basin_area": {
+        "value": 1403.2943
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5792,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 52128,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.38
+          },
+          "constant_loss": {
+            "value": 0.202
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 266400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_73": {
+      "basin_area": {
+        "value": 830.8298
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3375,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 30373,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.45
+          },
+          "constant_loss": {
+            "value": 0.116
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 136800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_20": {
+      "basin_area": {
+        "value": 1021.2832
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 6739,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 60649,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.35
+          },
+          "constant_loss": {
+            "value": 0.201
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 248400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_22": {
+      "basin_area": {
+        "value": 588.4746
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3496,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 31468,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.47
+          },
+          "constant_loss": {
+            "value": 0.21
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 223200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_5": {
+      "basin_area": {
+        "value": 1317.5565
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5266,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 47394,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.321
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 367200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_83": {
+      "basin_area": {
+        "value": 478.0216
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1602,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 14418,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.117
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 50400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_51": {
+      "basin_area": {
+        "value": 2008.6771
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3053,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 27475,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.166
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 54000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_89": {
+      "basin_area": {
+        "value": 666.9609
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1881,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 16931,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.162
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.15
+          },
+          "k": {
+            "value": 100800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_88": {
+      "basin_area": {
+        "value": 671.0862
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2089,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 18799,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.41
+          },
+          "constant_loss": {
+            "value": 0.201
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 140400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_16": {
+      "basin_area": {
+        "value": 1318.181
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3798,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 34186,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.58
+          },
+          "constant_loss": {
+            "value": 0.228
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 172800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_66": {
+      "basin_area": {
+        "value": 426.8327
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2400,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21600,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.167
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 144000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_9": {
+      "basin_area": {
+        "value": 877.5395
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3171,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 28537,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.45
+          },
+          "constant_loss": {
+            "value": 0.093
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 108000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_14": {
+      "basin_area": {
+        "value": 913.5774
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3321,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 29887,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.44
+          },
+          "constant_loss": {
+            "value": 0.196
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 176400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_81": {
+      "basin_area": {
+        "value": 1601.8454
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2335,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21013,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.064
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.09
+          },
+          "k": {
+            "value": 36000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_39": {
+      "basin_area": {
+        "value": 741.5624
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 6091,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 54824,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.32
+          },
+          "constant_loss": {
+            "value": 0.139
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 172800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_38": {
+      "basin_area": {
+        "value": 611.5947
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1292,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11624,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.093
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.1
+          },
+          "k": {
+            "value": 46800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_21": {
+      "basin_area": {
+        "value": 442.0
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3393,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 30532,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.195
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 223200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_48": {
+      "basin_area": {
+        "value": 734.5355
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 4333,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 38995,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.242
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 241200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_58": {
+      "basin_area": {
+        "value": 591.177
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3675,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 33077,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.45
+          },
+          "constant_loss": {
+            "value": 0.193
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 244800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_72": {
+      "basin_area": {
+        "value": 1490.6238
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5996,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 53960,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.37
+          },
+          "constant_loss": {
+            "value": 0.191
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 313200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_29": {
+      "basin_area": {
+        "value": 1245.0719
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3572,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 32152,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.157
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.11
+          },
+          "k": {
+            "value": 43200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_90": {
+      "basin_area": {
+        "value": 547.8042
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1585,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 14267,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.62
+          },
+          "constant_loss": {
+            "value": 0.28
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 64800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_71": {
+      "basin_area": {
+        "value": 636.2071
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1555,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 13997,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.54
+          },
+          "constant_loss": {
+            "value": 0.252
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.17
+          },
+          "k": {
+            "value": 61200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_47": {
+      "basin_area": {
+        "value": 195.7557
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8100,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.57
+          },
+          "constant_loss": {
+            "value": 0.244
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.15
+          },
+          "k": {
+            "value": 57600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_50": {
+      "basin_area": {
+        "value": 1360.3517
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3058,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 27526,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.206
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.13
+          },
+          "k": {
+            "value": 57600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_106": {
+      "basin_area": {
+        "value": 214.8217
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2433,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21892,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.45
+          },
+          "constant_loss": {
+            "value": 0.262
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 147600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_25": {
+      "basin_area": {
+        "value": 734.3225
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2409,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21686,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.55
+          },
+          "constant_loss": {
+            "value": 0.288
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 118800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_40": {
+      "basin_area": {
+        "value": 1211.7528
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5989,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 53899,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.291
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 334800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_44": {
+      "basin_area": {
+        "value": 817.0811
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2578,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 23202,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.192
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.15
+          },
+          "k": {
+            "value": 97200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_84": {
+      "basin_area": {
+        "value": 411.4264
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1668,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 15016,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.046
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.08
+          },
+          "k": {
+            "value": 43200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_69": {
+      "basin_area": {
+        "value": 406.5114
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2787,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 25081,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.41
+          },
+          "constant_loss": {
+            "value": 0.117
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 126000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_85": {
+      "basin_area": {
+        "value": 258.2293
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2094,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 18846,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.38
+          },
+          "constant_loss": {
+            "value": 0.117
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.11
+          },
+          "k": {
+            "value": 122400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_55": {
+      "basin_area": {
+        "value": 271.0951
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2916,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 26244,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.39
+          },
+          "constant_loss": {
+            "value": 0.257
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.24
+          },
+          "k": {
+            "value": 273600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_43": {
+      "basin_area": {
+        "value": 134.0609
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2261,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 20347,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.28
+          },
+          "constant_loss": {
+            "value": 0.17
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 201600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_102": {
+      "basin_area": {
+        "value": 221.8353
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3126,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 28134,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.71
+          },
+          "constant_loss": {
+            "value": 0.399
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.26
+          },
+          "k": {
+            "value": 327600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_93": {
+      "basin_area": {
+        "value": 1229.2296
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5151,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 46354,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.29
+          },
+          "constant_loss": {
+            "value": 0.096
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 216000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_32": {
+      "basin_area": {
+        "value": 849.0831
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3716,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 33440,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.43
+          },
+          "constant_loss": {
+            "value": 0.156
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 172800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_68": {
+      "basin_area": {
+        "value": 562.5237
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1993,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 17942,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.38
+          },
+          "constant_loss": {
+            "value": 0.162
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 147600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_62": {
+      "basin_area": {
+        "value": 302.3068
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3527,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 31738,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.376
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 331200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_13": {
+      "basin_area": {
+        "value": 294.1038
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1094,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 9846,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.124
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.11
+          },
+          "k": {
+            "value": 57600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_27": {
+      "basin_area": {
+        "value": 388.8466
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1292,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11624,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.211
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.17
+          },
+          "k": {
+            "value": 133200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_23": {
+      "basin_area": {
+        "value": 174.9618
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2673,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 24055,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.52
+          },
+          "constant_loss": {
+            "value": 0.28
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 298800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_65": {
+      "basin_area": {
+        "value": 683.1498
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2977,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 26795,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.52
+          },
+          "constant_loss": {
+            "value": 0.34
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 356400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_107": {
+      "basin_area": {
+        "value": 197.2003
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3214,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 28930,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.33
+          },
+          "constant_loss": {
+            "value": 0.207
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 273600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_104": {
+      "basin_area": {
+        "value": 236.844
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2454,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 22086,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.32
+          },
+          "constant_loss": {
+            "value": 0.213
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 190800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_41": {
+      "basin_area": {
+        "value": 224.874
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3068,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 27612,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.44
+          },
+          "constant_loss": {
+            "value": 0.293
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 244800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_36": {
+      "basin_area": {
+        "value": 743.352
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2218,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 19962,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.64
+          },
+          "constant_loss": {
+            "value": 0.253
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 100800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_35": {
+      "basin_area": {
+        "value": 148.4779
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2340,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21056,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.29
+          },
+          "constant_loss": {
+            "value": 0.108
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 158400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_0": {
+      "basin_area": {
+        "value": 399.4791
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1837,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 16538,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.35
+          },
+          "constant_loss": {
+            "value": 0.155
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 140400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_60": {
+      "basin_area": {
+        "value": 900.9607
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1820,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 16376,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.57
+          },
+          "constant_loss": {
+            "value": 0.233
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.13
+          },
+          "k": {
+            "value": 50400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_46": {
+      "basin_area": {
+        "value": 1199.8169
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2281,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 20531,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.55
+          },
+          "constant_loss": {
+            "value": 0.274
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 97200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_59": {
+      "basin_area": {
+        "value": 265.19
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1891,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 17017,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.27
+          },
+          "constant_loss": {
+            "value": 0.094
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 183600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_94": {
+      "basin_area": {
+        "value": 538.5216
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3273,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 29455,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.33
+          },
+          "constant_loss": {
+            "value": 0.188
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 241200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_18": {
+      "basin_area": {
+        "value": 398.2936
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3919,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 35266,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.35
+          },
+          "constant_loss": {
+            "value": 0.182
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.16
+          },
+          "k": {
+            "value": 223200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_64": {
+      "basin_area": {
+        "value": 861.191
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3176,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 28584,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.59
+          },
+          "constant_loss": {
+            "value": 0.398
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 327600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_12": {
+      "basin_area": {
+        "value": 76.9275
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1445,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 13007,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.42
+          },
+          "constant_loss": {
+            "value": 0.223
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 172800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_87": {
+      "basin_area": {
+        "value": 586.3856
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1503,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 13529,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.208
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 140400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_30": {
+      "basin_area": {
+        "value": 605.8865
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 4640,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 41756,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.35
+          },
+          "constant_loss": {
+            "value": 0.175
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 226800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_31": {
+      "basin_area": {
+        "value": 309.6231
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3185,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 28663,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.219
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 252000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_54": {
+      "basin_area": {
+        "value": 354.3783
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3709,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 33379,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.215
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 219600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_11": {
+      "basin_area": {
+        "value": 747.1205
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 4303,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 38732,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.51
+          },
+          "constant_loss": {
+            "value": 0.251
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 248400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_103": {
+      "basin_area": {
+        "value": 208.0756
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3762,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 33854,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.56
+          },
+          "constant_loss": {
+            "value": 0.401
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 320400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_45": {
+      "basin_area": {
+        "value": 254.9136
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1293,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11635,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.6
+          },
+          "constant_loss": {
+            "value": 0.315
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 97200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_96": {
+      "basin_area": {
+        "value": 89.0529
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1786,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 16074,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.22
+          },
+          "constant_loss": {
+            "value": 0.024
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 180000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_24": {
+      "basin_area": {
+        "value": 185.3104
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2761,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 24854,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.61
+          },
+          "constant_loss": {
+            "value": 0.372
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 320400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_19": {
+      "basin_area": {
+        "value": 234.2587
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3824,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 34416,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.3
+          },
+          "constant_loss": {
+            "value": 0.136
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 183600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_49": {
+      "basin_area": {
+        "value": 371.4436
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3705,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 33343,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.35
+          },
+          "constant_loss": {
+            "value": 0.229
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 230400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_95": {
+      "basin_area": {
+        "value": 1992.0799
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 8154,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 73390,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.187
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 241200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_1": {
+      "basin_area": {
+        "value": 1001.4619
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2827,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 25445,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.43
+          },
+          "constant_loss": {
+            "value": 0.136
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 144000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_100": {
+      "basin_area": {
+        "value": 1208.0295
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 3271,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 29441,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.55
+          },
+          "constant_loss": {
+            "value": 0.216
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 194400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_99": {
+      "basin_area": {
+        "value": 1160.4536
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 5580,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 50220,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.39
+          },
+          "constant_loss": {
+            "value": 0.211
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.2
+          },
+          "k": {
+            "value": 248400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_17": {
+      "basin_area": {
+        "value": 427.4502
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1202,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 10818,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.44
+          },
+          "constant_loss": {
+            "value": 0.236
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 108000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_105": {
+      "basin_area": {
+        "value": 161.8456
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2840,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 25560,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.37
+          },
+          "constant_loss": {
+            "value": 0.231
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 334800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_42": {
+      "basin_area": {
+        "value": 95.206
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 964,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8680,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.36
+          },
+          "constant_loss": {
+            "value": 0.161
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 97200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_98": {
+      "basin_area": {
+        "value": 238.6733
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2386,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 21470,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.39
+          },
+          "constant_loss": {
+            "value": 0.154
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 205200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_109": {
+      "basin_area": {
+        "value": 768.292
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1097,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 9875,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.19
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 68400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_80": {
+      "basin_area": {
+        "value": 648.6631
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2790,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 25106,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.43
+          },
+          "constant_loss": {
+            "value": 0.214
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.19
+          },
+          "k": {
+            "value": 165600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_15": {
+      "basin_area": {
+        "value": 428.0411
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1292,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11624,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.086
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.1
+          },
+          "k": {
+            "value": 39600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_3": {
+      "basin_area": {
+        "value": 650.7251
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1250,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11250,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.48
+          },
+          "constant_loss": {
+            "value": 0.088
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.1
+          },
+          "k": {
+            "value": 43200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_101": {
+      "basin_area": {
+        "value": 1087.006
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2644,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 23796,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.6
+          },
+          "constant_loss": {
+            "value": 0.245
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.18
+          },
+          "k": {
+            "value": 75600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_34": {
+      "basin_area": {
+        "value": 129.3685
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1025,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 9227,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.142
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.0
+          },
+          "k": {
+            "value": 104400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_7": {
+      "basin_area": {
+        "value": 204.6673
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1674,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 15070,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.5
+          },
+          "constant_loss": {
+            "value": 0.144
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.13
+          },
+          "k": {
+            "value": 104400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_10": {
+      "basin_area": {
+        "value": 322.1726
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 943,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8489,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.55
+          },
+          "constant_loss": {
+            "value": 0.139
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.13
+          },
+          "k": {
+            "value": 43200,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_82": {
+      "basin_area": {
+        "value": 284.5353
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1974,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 17766,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.14
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 140400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_70": {
+      "basin_area": {
+        "value": 396.0848
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8100,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.07
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.09
+          },
+          "k": {
+            "value": 50400,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_2": {
+      "basin_area": {
+        "value": 538.6657
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1300,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11700,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.51
+          },
+          "constant_loss": {
+            "value": 0.112
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.12
+          },
+          "k": {
+            "value": 64800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_37": {
+      "basin_area": {
+        "value": 263.3964
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 2498,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 22478,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.4
+          },
+          "constant_loss": {
+            "value": 0.139
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.15
+          },
+          "k": {
+            "value": 162000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_86": {
+      "basin_area": {
+        "value": 90.0466
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 955,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8590,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.46
+          },
+          "constant_loss": {
+            "value": 0.047
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.08
+          },
+          "k": {
+            "value": 46800,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_74": {
+      "basin_area": {
+        "value": 271.1446
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1742,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 15674,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.49
+          },
+          "constant_loss": {
+            "value": 0.093
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.11
+          },
+          "k": {
+            "value": 90000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_67": {
+      "basin_area": {
+        "value": 411.5654
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8100,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.58
+          },
+          "constant_loss": {
+            "value": 0.154
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 54000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_77": {
+      "basin_area": {
+        "value": 217.0679
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1521,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 13691,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.43
+          },
+          "constant_loss": {
+            "value": 0.125
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.13
+          },
+          "k": {
+            "value": 108000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_79": {
+      "basin_area": {
+        "value": 145.4559
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 917,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 8251,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.53
+          },
+          "constant_loss": {
+            "value": 0.095
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.1
+          },
+          "k": {
+            "value": 72000,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_78": {
+      "basin_area": {
+        "value": 259.0237
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1302,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 11718,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.51
+          },
+          "constant_loss": {
+            "value": 0.068
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.09
+          },
+          "k": {
+            "value": 57600,
+            "units": "seconds"
+          }
+        }
+      }
+    },
+    "basin_76": {
+      "basin_area": {
+        "value": 435.3175
+      },
+      "transform": {
+        "clark_uh": {
+          "tc": {
+            "value": 1397,
+            "units": "seconds"
+          },
+          "storage_r": {
+            "value": 12575,
+            "units": "seconds"
+          }
+        }
+      },
+      "loss": {
+        "initial_constant": {
+          "initial_loss": {
+            "value": 0.59
+          },
+          "constant_loss": {
+            "value": 0.16
+          }
+        }
+      },
+      "baseflow": {
+        "linear_reservoir": {
+          "gw_fraction": {
+            "value": 0.14
+          },
+          "k": {
+            "value": 122400,
+            "units": "seconds"
+          }
+        }
+      }
+    }
+  },
+  "reaches": {
+    "reach_170": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.243
+          }
+        }
+      }
+    },
+    "reach_204": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2520,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_190": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1800,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_205": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1980,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.292
+          }
+        }
+      }
+    },
+    "reach_187": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 5220,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_176": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_157": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 960,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.29
+          }
+        }
+      }
+    },
+    "reach_162": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1140,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.292
+          }
+        }
+      }
+    },
+    "reach_237": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2400,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_185": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1020,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_155": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3300,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.275
+          }
+        }
+      }
+    },
+    "reach_160": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3240,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.272
+          }
+        }
+      }
+    },
+    "reach_154": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1680,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.264
+          }
+        }
+      }
+    },
+    "reach_193": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.285
+          }
+        }
+      }
+    },
+    "reach_215": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.287
+          }
+        }
+      }
+    },
+    "reach_206": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.289
+          }
+        }
+      }
+    },
+    "reach_195": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.265
+          }
+        }
+      }
+    },
+    "reach_207": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.275
+          }
+        }
+      }
+    },
+    "reach_216": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1800,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.284
+          }
+        }
+      }
+    },
+    "reach_226": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.221
+          }
+        }
+      }
+    },
+    "reach_227": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1020,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.287
+          }
+        }
+      }
+    },
+    "reach_228": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1140,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.29
+          }
+        }
+      }
+    },
+    "reach_229": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1020,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.287
+          }
+        }
+      }
+    },
+    "reach_231": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1200,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.292
+          }
+        }
+      }
+    },
+    "reach_234": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.299
+          }
+        }
+      }
+    },
+    "reach_240": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1440,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.297
+          }
+        }
+      }
+    },
+    "reach_230": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_156": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3240,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.266
+          }
+        }
+      }
+    },
+    "reach_214": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1320,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.296
+          }
+        }
+      }
+    },
+    "reach_153": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 4260,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.265
+          }
+        }
+      }
+    },
+    "reach_158": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3000,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.266
+          }
+        }
+      }
+    },
+    "reach_161": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1920,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.276
+          }
+        }
+      }
+    },
+    "reach_168": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2100,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.272
+          }
+        }
+      }
+    },
+    "reach_172": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1920,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.297
+          }
+        }
+      }
+    },
+    "reach_197": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1620,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_194": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2220,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.29
+          }
+        }
+      }
+    },
+    "reach_169": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2040,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.287
+          }
+        }
+      }
+    },
+    "reach_221": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1320,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_167": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1080,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.273
+          }
+        }
+      }
+    },
+    "reach_213": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.297
+          }
+        }
+      }
+    },
+    "reach_239": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.296
+          }
+        }
+      }
+    },
+    "reach_232": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 4380,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_173": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2580,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_189": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1260,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.292
+          }
+        }
+      }
+    },
+    "reach_209": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1920,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.291
+          }
+        }
+      }
+    },
+    "reach_196": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_165": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3180,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.275
+          }
+        }
+      }
+    },
+    "reach_159": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1380,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_178": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 960,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.293
+          }
+        }
+      }
+    },
+    "reach_235": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_238": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1500,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_203": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1380,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_198": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_202": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3180,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.296
+          }
+        }
+      }
+    },
+    "reach_164": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.284
+          }
+        }
+      }
+    },
+    "reach_171": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.282
+          }
+        }
+      }
+    },
+    "reach_191": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.294
+          }
+        }
+      }
+    },
+    "reach_220": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.299
+          }
+        }
+      }
+    },
+    "reach_222": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.29
+          }
+        }
+      }
+    },
+    "reach_192": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 3180,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.29
+          }
+        }
+      }
+    },
+    "reach_236": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 900,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_208": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 960,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_166": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1980,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.274
+          }
+        }
+      }
+    },
+    "reach_233": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 2820,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.295
+          }
+        }
+      }
+    },
+    "reach_163": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1800,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.283
+          }
+        }
+      }
+    },
+    "reach_241": {
+      "routing": {
+        "muskingum": {
+          "k": {
+            "value": 1200,
+            "units": "seconds"
+          },
+          "x": {
+            "value": 0.299
+          }
+        }
+      }
+    }
+  },
+  "reservoirs": {
+    "reservoir_224": {
+      "routing": {
+        "level_pool": {
+          "elevation_storage": {
+            "path": "./reservoir_elevation_storage.csv",
+            "elevation_column_name": "Stage_ft",
+            "storage_column_name": "Storage_ac-ft"
+          },
+          "storage_discharges": {
+            "spillway": {
+              "path": "./reservoir_spillway_storage_discharge.csv",
+              "storage_column_name": "Storage_ac-ft",
+              "discharge_column_name": "Discharge_cfs"
+            }
+          },
+          "initial_storage": {
+            "value": 6767.0
+          }
+        }
+      }
+    }
+  }
+}

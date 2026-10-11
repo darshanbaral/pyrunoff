@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 import pandas
 
@@ -68,32 +68,3 @@ def check_time_step(
         tc_s = int(tc.total_seconds())
         if ts_s > tc_s:
             raise ValueError(f"{name} time_step cannot be bigger than tc.")
-
-
-def fix_ts_end(
-    ts: pandas.Series, end: pandas.Timestamp | datetime, time_step: pandas.Timedelta
-) -> pandas.Series:
-    """
-    Extend a time series with zeros or truncate it to a specified end time.
-
-    :param ts: Time series with a datetime index.
-    :param end: Timestamp at which the returned series ends.
-    :param time_step: Interval used to create added timestamps.
-
-    :return: Time series ending at ``end``.
-    """
-    if not isinstance(ts.index, pandas.DatetimeIndex):
-        raise TypeError("Series must have a DatetimeIndex.")
-
-    ts_index: pandas.DatetimeIndex = ts.index
-    last_time = ts_index[-1]
-    end_ts = pandas.Timestamp(end)
-
-    if end_ts <= last_time:
-        return ts.loc[ts_index <= end_ts]
-
-    extend_index = pandas.date_range(
-        start=last_time + time_step, end=end_ts, freq=time_step
-    )
-    extend_data = pandas.Series(0.0, index=extend_index)
-    return pandas.concat([ts, extend_data])

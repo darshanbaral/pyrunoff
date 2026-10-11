@@ -82,24 +82,24 @@ def kge(
     if len(obs) < 2:
         return KgeResult.empty()
 
-    if sim.mean() == 0:
-        corr_coef = numpy.nan
-    else:
-        corr_coef = numpy.corrcoef(obs, sim)[0, 1]
-
     mean_obs = numpy.mean(obs)
     std_obs = numpy.std(obs, ddof=1)
+    mean_sim = numpy.mean(sim)
+    std_sim = numpy.std(sim, ddof=1)
 
+    # correlation is undefined for a constant series, so check before computing
+    # it rather than letting numpy divide by zero
     if (
-        numpy.isnan(corr_coef)
+        mean_sim == 0
         or numpy.isclose(std_obs, 0)
         or numpy.isclose(mean_obs, 0)
+        or std_sim == 0
     ):
         return KgeResult.empty()
 
-    mean_sim = numpy.mean(sim)
-
-    std_sim = numpy.std(sim, ddof=1)
+    corr_coef = numpy.corrcoef(obs, sim)[0, 1]
+    if numpy.isnan(corr_coef):
+        return KgeResult.empty()
 
     beta = mean_sim / mean_obs
 

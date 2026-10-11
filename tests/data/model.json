@@ -1,0 +1,988 @@
+{
+  "defaults": {
+    "basin": {
+      "loss": "initial_constant",
+      "transform": "clark_uh",
+      "baseflow": "linear_reservoir"
+    },
+    "reach": {
+      "routing": "muskingum"
+    },
+    "reservoir": {
+      "routing": "level_pool"
+    }
+  },
+  "elements": {
+    "basin_0": {
+      "type": "basin",
+      "downstream": "junction_129"
+    },
+    "junction_129": {
+      "type": "junction",
+      "downstream": "reach_191"
+    },
+    "reach_191": {
+      "type": "reach",
+      "downstream": "reach_202"
+    },
+    "reach_202": {
+      "type": "reach",
+      "downstream": "reach_208"
+    },
+    "reach_208": {
+      "type": "reach",
+      "downstream": "reach_213"
+    },
+    "reach_213": {
+      "type": "reach",
+      "downstream": "reach_238"
+    },
+    "reach_238": {
+      "type": "reach",
+      "downstream": "reach_239"
+    },
+    "reach_239": {
+      "type": "reach",
+      "downstream": "reach_240"
+    },
+    "reach_240": {
+      "type": "reach",
+      "downstream": "reach_241"
+    },
+    "reach_241": {
+      "type": "reach",
+      "downstream": "sink_242"
+    },
+    "basin_1": {
+      "type": "basin",
+      "downstream": "junction_174"
+    },
+    "junction_174": {
+      "type": "junction",
+      "downstream": "reach_190"
+    },
+    "reach_190": {
+      "type": "reach",
+      "downstream": "junction_199"
+    },
+    "junction_199": {
+      "type": "junction",
+      "downstream": "reach_205"
+    },
+    "reach_205": {
+      "type": "reach",
+      "downstream": "junction_210"
+    },
+    "junction_210": {
+      "type": "junction",
+      "downstream": "reach_214"
+    },
+    "reach_214": {
+      "type": "reach",
+      "downstream": "junction_217"
+    },
+    "junction_217": {
+      "type": "junction",
+      "downstream": "reach_220"
+    },
+    "reach_220": {
+      "type": "reach",
+      "downstream": "junction_223"
+    },
+    "junction_223": {
+      "type": "junction",
+      "downstream": "reach_241"
+    },
+    "basin_2": {
+      "type": "basin",
+      "downstream": "junction_110"
+    },
+    "junction_110": {
+      "type": "junction",
+      "downstream": "reach_153"
+    },
+    "reach_153": {
+      "type": "reach",
+      "downstream": "junction_174"
+    },
+    "basin_3": {
+      "type": "basin",
+      "downstream": "junction_110"
+    },
+    "basin_4": {
+      "type": "basin",
+      "downstream": "junction_212"
+    },
+    "junction_212": {
+      "type": "junction",
+      "downstream": "reach_216"
+    },
+    "reach_216": {
+      "type": "reach",
+      "downstream": "junction_219"
+    },
+    "junction_219": {
+      "type": "junction",
+      "downstream": "reach_222"
+    },
+    "reach_222": {
+      "type": "reach",
+      "downstream": "reservoir_224"
+    },
+    "reservoir_224": {
+      "type": "reservoir",
+      "downstream": "junction_225"
+    },
+    "junction_225": {
+      "type": "junction",
+      "downstream": "reach_226"
+    },
+    "reach_226": {
+      "type": "reach",
+      "downstream": "reach_227"
+    },
+    "reach_227": {
+      "type": "reach",
+      "downstream": "reach_228"
+    },
+    "reach_228": {
+      "type": "reach",
+      "downstream": "reach_229"
+    },
+    "reach_229": {
+      "type": "reach",
+      "downstream": "reach_230"
+    },
+    "reach_230": {
+      "type": "reach",
+      "downstream": "reach_231"
+    },
+    "reach_231": {
+      "type": "reach",
+      "downstream": "reach_232"
+    },
+    "reach_232": {
+      "type": "reach",
+      "downstream": "reach_233"
+    },
+    "reach_233": {
+      "type": "reach",
+      "downstream": "reach_234"
+    },
+    "reach_234": {
+      "type": "reach",
+      "downstream": "reach_235"
+    },
+    "reach_235": {
+      "type": "reach",
+      "downstream": "reach_236"
+    },
+    "reach_236": {
+      "type": "reach",
+      "downstream": "reach_237"
+    },
+    "reach_237": {
+      "type": "reach",
+      "downstream": "reach_238"
+    },
+    "basin_5": {
+      "type": "basin",
+      "downstream": "junction_188"
+    },
+    "junction_188": {
+      "type": "junction",
+      "downstream": "reach_197"
+    },
+    "reach_197": {
+      "type": "reach",
+      "downstream": "reach_203"
+    },
+    "reach_203": {
+      "type": "reach",
+      "downstream": "reach_209"
+    },
+    "reach_209": {
+      "type": "reach",
+      "downstream": "reach_221"
+    },
+    "reach_221": {
+      "type": "reach",
+      "downstream": "reach_233"
+    },
+    "basin_6": {
+      "type": "basin",
+      "downstream": "junction_219"
+    },
+    "basin_7": {
+      "type": "basin",
+      "downstream": "junction_200"
+    },
+    "junction_200": {
+      "type": "junction",
+      "downstream": "reach_206"
+    },
+    "reach_206": {
+      "type": "reach",
+      "downstream": "junction_211"
+    },
+    "junction_211": {
+      "type": "junction",
+      "downstream": "reach_215"
+    },
+    "reach_215": {
+      "type": "reach",
+      "downstream": "junction_218"
+    },
+    "junction_218": {
+      "type": "junction",
+      "downstream": "reach_221"
+    },
+    "basin_8": {
+      "type": "basin",
+      "downstream": "junction_111"
+    },
+    "junction_111": {
+      "type": "junction",
+      "downstream": "reach_154"
+    },
+    "reach_154": {
+      "type": "reach",
+      "downstream": "junction_200"
+    },
+    "basin_9": {
+      "type": "basin",
+      "downstream": "junction_175"
+    },
+    "junction_175": {
+      "type": "junction",
+      "downstream": "reach_233"
+    },
+    "basin_10": {
+      "type": "basin",
+      "downstream": "junction_112"
+    },
+    "junction_112": {
+      "type": "junction",
+      "downstream": "reach_155"
+    },
+    "reach_155": {
+      "type": "reach",
+      "downstream": "junction_175"
+    },
+    "basin_11": {
+      "type": "basin",
+      "downstream": "junction_114"
+    },
+    "junction_114": {
+      "type": "junction",
+      "downstream": "reach_209"
+    },
+    "basin_12": {
+      "type": "basin",
+      "downstream": "junction_183"
+    },
+    "junction_183": {
+      "type": "junction",
+      "downstream": "reach_194"
+    },
+    "reach_194": {
+      "type": "reach",
+      "downstream": "reach_209"
+    },
+    "basin_13": {
+      "type": "basin",
+      "downstream": "junction_137"
+    },
+    "junction_137": {
+      "type": "junction",
+      "downstream": "reach_167"
+    },
+    "reach_167": {
+      "type": "reach",
+      "downstream": "junction_183"
+    },
+    "basin_14": {
+      "type": "basin",
+      "downstream": "junction_199"
+    },
+    "basin_15": {
+      "type": "basin",
+      "downstream": "junction_113"
+    },
+    "junction_113": {
+      "type": "junction",
+      "downstream": "reach_156"
+    },
+    "reach_156": {
+      "type": "reach",
+      "downstream": "junction_199"
+    },
+    "basin_16": {
+      "type": "basin",
+      "downstream": "junction_115"
+    },
+    "junction_115": {
+      "type": "junction",
+      "downstream": "reach_176"
+    },
+    "reach_176": {
+      "type": "reach",
+      "downstream": "reach_191"
+    },
+    "basin_17": {
+      "type": "basin",
+      "downstream": "junction_151"
+    },
+    "junction_151": {
+      "type": "junction",
+      "downstream": "reach_189"
+    },
+    "reach_189": {
+      "type": "reach",
+      "downstream": "reach_198"
+    },
+    "reach_198": {
+      "type": "reach",
+      "downstream": "reach_204"
+    },
+    "reach_204": {
+      "type": "reach",
+      "downstream": "reach_232"
+    },
+    "basin_18": {
+      "type": "basin",
+      "downstream": "junction_217"
+    },
+    "basin_19": {
+      "type": "basin",
+      "downstream": "junction_217"
+    },
+    "basin_20": {
+      "type": "basin",
+      "downstream": "junction_210"
+    },
+    "basin_21": {
+      "type": "basin",
+      "downstream": "junction_175"
+    },
+    "basin_22": {
+      "type": "basin",
+      "downstream": "junction_218"
+    },
+    "basin_23": {
+      "type": "basin",
+      "downstream": "junction_114"
+    },
+    "basin_24": {
+      "type": "basin",
+      "downstream": "junction_124"
+    },
+    "junction_124": {
+      "type": "junction",
+      "downstream": "reach_203"
+    },
+    "basin_25": {
+      "type": "basin",
+      "downstream": "junction_149"
+    },
+    "junction_149": {
+      "type": "junction",
+      "downstream": "reach_172"
+    },
+    "reach_172": {
+      "type": "reach",
+      "downstream": "junction_188"
+    },
+    "basin_26": {
+      "type": "basin",
+      "downstream": "junction_141"
+    },
+    "junction_141": {
+      "type": "junction",
+      "downstream": "reach_170"
+    },
+    "reach_170": {
+      "type": "reach",
+      "downstream": "junction_186"
+    },
+    "junction_186": {
+      "type": "junction",
+      "downstream": "reach_195"
+    },
+    "reach_195": {
+      "type": "reach",
+      "downstream": "junction_201"
+    },
+    "junction_201": {
+      "type": "junction",
+      "downstream": "reach_207"
+    },
+    "reach_207": {
+      "type": "reach",
+      "downstream": "junction_212"
+    },
+    "basin_27": {
+      "type": "basin",
+      "downstream": "junction_139"
+    },
+    "junction_139": {
+      "type": "junction",
+      "downstream": "reach_185"
+    },
+    "reach_185": {
+      "type": "reach",
+      "downstream": "reach_194"
+    },
+    "basin_28": {
+      "type": "basin",
+      "downstream": "junction_120"
+    },
+    "junction_120": {
+      "type": "junction",
+      "downstream": "reach_229"
+    },
+    "basin_29": {
+      "type": "basin",
+      "downstream": "reservoir_224"
+    },
+    "basin_30": {
+      "type": "basin",
+      "downstream": "junction_210"
+    },
+    "basin_31": {
+      "type": "basin",
+      "downstream": "junction_199"
+    },
+    "basin_32": {
+      "type": "basin",
+      "downstream": "junction_174"
+    },
+    "basin_33": {
+      "type": "basin",
+      "downstream": "junction_201"
+    },
+    "basin_34": {
+      "type": "basin",
+      "downstream": "junction_116"
+    },
+    "junction_116": {
+      "type": "junction",
+      "downstream": "reach_157"
+    },
+    "reach_157": {
+      "type": "reach",
+      "downstream": "reach_176"
+    },
+    "basin_35": {
+      "type": "basin",
+      "downstream": "junction_115"
+    },
+    "basin_36": {
+      "type": "basin",
+      "downstream": "junction_116"
+    },
+    "basin_37": {
+      "type": "basin",
+      "downstream": "junction_177"
+    },
+    "junction_177": {
+      "type": "junction",
+      "downstream": "reach_237"
+    },
+    "basin_38": {
+      "type": "basin",
+      "downstream": "junction_117"
+    },
+    "junction_117": {
+      "type": "junction",
+      "downstream": "reach_158"
+    },
+    "reach_158": {
+      "type": "reach",
+      "downstream": "junction_177"
+    },
+    "basin_39": {
+      "type": "basin",
+      "downstream": "sink_242"
+    },
+    "basin_40": {
+      "type": "basin",
+      "downstream": "junction_175"
+    },
+    "basin_41": {
+      "type": "basin",
+      "downstream": "junction_148"
+    },
+    "junction_148": {
+      "type": "junction",
+      "downstream": "reach_232"
+    },
+    "basin_42": {
+      "type": "basin",
+      "downstream": "junction_118"
+    },
+    "junction_118": {
+      "type": "junction",
+      "downstream": "reach_231"
+    },
+    "basin_43": {
+      "type": "basin",
+      "downstream": "junction_118"
+    },
+    "basin_44": {
+      "type": "basin",
+      "downstream": "junction_119"
+    },
+    "junction_119": {
+      "type": "junction",
+      "downstream": "reach_230"
+    },
+    "basin_45": {
+      "type": "basin",
+      "downstream": "junction_120"
+    },
+    "basin_46": {
+      "type": "basin",
+      "downstream": "junction_123"
+    },
+    "junction_123": {
+      "type": "junction",
+      "downstream": "reach_228"
+    },
+    "basin_47": {
+      "type": "basin",
+      "downstream": "junction_131"
+    },
+    "junction_131": {
+      "type": "junction",
+      "downstream": "reach_227"
+    },
+    "basin_48": {
+      "type": "basin",
+      "downstream": "junction_223"
+    },
+    "basin_49": {
+      "type": "basin",
+      "downstream": "junction_223"
+    },
+    "basin_50": {
+      "type": "basin",
+      "downstream": "reservoir_224"
+    },
+    "basin_51": {
+      "type": "basin",
+      "downstream": "junction_219"
+    },
+    "basin_52": {
+      "type": "basin",
+      "downstream": "junction_212"
+    },
+    "basin_53": {
+      "type": "basin",
+      "downstream": "junction_201"
+    },
+    "basin_54": {
+      "type": "basin",
+      "downstream": "junction_121"
+    },
+    "junction_121": {
+      "type": "junction",
+      "downstream": "reach_240"
+    },
+    "basin_55": {
+      "type": "basin",
+      "downstream": "junction_121"
+    },
+    "basin_56": {
+      "type": "basin",
+      "downstream": "junction_186"
+    },
+    "basin_57": {
+      "type": "basin",
+      "downstream": "junction_122"
+    },
+    "junction_122": {
+      "type": "junction",
+      "downstream": "reach_238"
+    },
+    "basin_58": {
+      "type": "basin",
+      "downstream": "junction_182"
+    },
+    "junction_182": {
+      "type": "junction",
+      "downstream": "reach_234"
+    },
+    "basin_59": {
+      "type": "basin",
+      "downstream": "junction_132"
+    },
+    "junction_132": {
+      "type": "junction",
+      "downstream": "reach_162"
+    },
+    "reach_162": {
+      "type": "reach",
+      "downstream": "junction_180"
+    },
+    "junction_180": {
+      "type": "junction",
+      "downstream": "reach_239"
+    },
+    "basin_60": {
+      "type": "basin",
+      "downstream": "junction_123"
+    },
+    "basin_61": {
+      "type": "basin",
+      "downstream": "junction_124"
+    },
+    "basin_62": {
+      "type": "basin",
+      "downstream": "junction_124"
+    },
+    "basin_63": {
+      "type": "basin",
+      "downstream": "junction_125"
+    },
+    "junction_125": {
+      "type": "junction",
+      "downstream": "reach_192"
+    },
+    "reach_192": {
+      "type": "reach",
+      "downstream": "reach_203"
+    },
+    "basin_64": {
+      "type": "basin",
+      "downstream": "junction_126"
+    },
+    "junction_126": {
+      "type": "junction",
+      "downstream": "reach_178"
+    },
+    "reach_178": {
+      "type": "reach",
+      "downstream": "reach_192"
+    },
+    "basin_65": {
+      "type": "basin",
+      "downstream": "junction_127"
+    },
+    "junction_127": {
+      "type": "junction",
+      "downstream": "reach_159"
+    },
+    "reach_159": {
+      "type": "reach",
+      "downstream": "reach_178"
+    },
+    "basin_66": {
+      "type": "basin",
+      "downstream": "junction_211"
+    },
+    "basin_67": {
+      "type": "basin",
+      "downstream": "junction_128"
+    },
+    "junction_128": {
+      "type": "junction",
+      "downstream": "reach_160"
+    },
+    "reach_160": {
+      "type": "reach",
+      "downstream": "junction_211"
+    },
+    "basin_68": {
+      "type": "basin",
+      "downstream": "junction_129"
+    },
+    "basin_69": {
+      "type": "basin",
+      "downstream": "junction_179"
+    },
+    "junction_179": {
+      "type": "junction",
+      "downstream": "reach_235"
+    },
+    "basin_70": {
+      "type": "basin",
+      "downstream": "junction_130"
+    },
+    "junction_130": {
+      "type": "junction",
+      "downstream": "reach_161"
+    },
+    "reach_161": {
+      "type": "reach",
+      "downstream": "junction_179"
+    },
+    "basin_71": {
+      "type": "basin",
+      "downstream": "junction_131"
+    },
+    "basin_72": {
+      "type": "basin",
+      "downstream": "junction_132"
+    },
+    "basin_73": {
+      "type": "basin",
+      "downstream": "junction_182"
+    },
+    "basin_74": {
+      "type": "basin",
+      "downstream": "junction_133"
+    },
+    "junction_133": {
+      "type": "junction",
+      "downstream": "reach_163"
+    },
+    "reach_163": {
+      "type": "reach",
+      "downstream": "junction_182"
+    },
+    "basin_75": {
+      "type": "basin",
+      "downstream": "junction_211"
+    },
+    "basin_76": {
+      "type": "basin",
+      "downstream": "junction_181"
+    },
+    "junction_181": {
+      "type": "junction",
+      "downstream": "reach_193"
+    },
+    "reach_193": {
+      "type": "reach",
+      "downstream": "junction_200"
+    },
+    "basin_77": {
+      "type": "basin",
+      "downstream": "junction_134"
+    },
+    "junction_134": {
+      "type": "junction",
+      "downstream": "reach_164"
+    },
+    "reach_164": {
+      "type": "reach",
+      "downstream": "junction_181"
+    },
+    "basin_78": {
+      "type": "basin",
+      "downstream": "junction_134"
+    },
+    "basin_79": {
+      "type": "basin",
+      "downstream": "junction_134"
+    },
+    "basin_80": {
+      "type": "basin",
+      "downstream": "junction_210"
+    },
+    "basin_81": {
+      "type": "basin",
+      "downstream": "junction_135"
+    },
+    "junction_135": {
+      "type": "junction",
+      "downstream": "reach_165"
+    },
+    "reach_165": {
+      "type": "reach",
+      "downstream": "junction_210"
+    },
+    "basin_82": {
+      "type": "basin",
+      "downstream": "junction_182"
+    },
+    "basin_83": {
+      "type": "basin",
+      "downstream": "junction_136"
+    },
+    "junction_136": {
+      "type": "junction",
+      "downstream": "reach_166"
+    },
+    "reach_166": {
+      "type": "reach",
+      "downstream": "junction_182"
+    },
+    "basin_84": {
+      "type": "basin",
+      "downstream": "junction_137"
+    },
+    "basin_85": {
+      "type": "basin",
+      "downstream": "junction_184"
+    },
+    "junction_184": {
+      "type": "junction",
+      "downstream": "reach_236"
+    },
+    "basin_86": {
+      "type": "basin",
+      "downstream": "junction_138"
+    },
+    "junction_138": {
+      "type": "junction",
+      "downstream": "reach_168"
+    },
+    "reach_168": {
+      "type": "reach",
+      "downstream": "junction_184"
+    },
+    "basin_87": {
+      "type": "basin",
+      "downstream": "junction_183"
+    },
+    "basin_88": {
+      "type": "basin",
+      "downstream": "junction_139"
+    },
+    "basin_89": {
+      "type": "basin",
+      "downstream": "junction_140"
+    },
+    "junction_140": {
+      "type": "junction",
+      "downstream": "reach_169"
+    },
+    "reach_169": {
+      "type": "reach",
+      "downstream": "reach_185"
+    },
+    "basin_90": {
+      "type": "basin",
+      "downstream": "reservoir_224"
+    },
+    "basin_91": {
+      "type": "basin",
+      "downstream": "junction_186"
+    },
+    "basin_92": {
+      "type": "basin",
+      "downstream": "junction_141"
+    },
+    "basin_93": {
+      "type": "basin",
+      "downstream": "junction_143"
+    },
+    "junction_143": {
+      "type": "junction",
+      "downstream": "reach_208"
+    },
+    "basin_94": {
+      "type": "basin",
+      "downstream": "junction_180"
+    },
+    "basin_95": {
+      "type": "basin",
+      "downstream": "junction_142"
+    },
+    "junction_142": {
+      "type": "junction",
+      "downstream": "reach_213"
+    },
+    "basin_96": {
+      "type": "basin",
+      "downstream": "junction_142"
+    },
+    "basin_97": {
+      "type": "basin",
+      "downstream": "junction_143"
+    },
+    "basin_98": {
+      "type": "basin",
+      "downstream": "junction_144"
+    },
+    "junction_144": {
+      "type": "junction",
+      "downstream": "reach_202"
+    },
+    "basin_99": {
+      "type": "basin",
+      "downstream": "junction_145"
+    },
+    "junction_145": {
+      "type": "junction",
+      "downstream": "reach_196"
+    },
+    "reach_196": {
+      "type": "reach",
+      "downstream": "reach_202"
+    },
+    "basin_100": {
+      "type": "basin",
+      "downstream": "junction_146"
+    },
+    "junction_146": {
+      "type": "junction",
+      "downstream": "reach_187"
+    },
+    "reach_187": {
+      "type": "reach",
+      "downstream": "reach_196"
+    },
+    "basin_101": {
+      "type": "basin",
+      "downstream": "junction_147"
+    },
+    "junction_147": {
+      "type": "junction",
+      "downstream": "reach_171"
+    },
+    "reach_171": {
+      "type": "reach",
+      "downstream": "reach_187"
+    },
+    "basin_102": {
+      "type": "basin",
+      "downstream": "junction_148"
+    },
+    "basin_103": {
+      "type": "basin",
+      "downstream": "junction_188"
+    },
+    "basin_104": {
+      "type": "basin",
+      "downstream": "junction_149"
+    },
+    "basin_105": {
+      "type": "basin",
+      "downstream": "junction_149"
+    },
+    "basin_106": {
+      "type": "basin",
+      "downstream": "junction_150"
+    },
+    "junction_150": {
+      "type": "junction",
+      "downstream": "reach_198"
+    },
+    "basin_107": {
+      "type": "basin",
+      "downstream": "junction_150"
+    },
+    "basin_108": {
+      "type": "basin",
+      "downstream": "junction_151"
+    },
+    "basin_109": {
+      "type": "basin",
+      "downstream": "junction_152"
+    },
+    "junction_152": {
+      "type": "junction",
+      "downstream": "reach_173"
+    },
+    "reach_173": {
+      "type": "reach",
+      "downstream": "reach_189"
+    },
+    "sink_242": {
+      "type": "sink"
+    }
+  }
+}
