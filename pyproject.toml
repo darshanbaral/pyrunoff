@@ -23,6 +23,10 @@ dependencies = [
     "pandas>=3.0.0",
 ]
 
+[project.urls]
+Documentation = "https://darshanbaral.github.io/pyrunoff/"
+Repository = "https://github.com/darshanbaral/pyrunoff"
+
 [project.optional-dependencies]
 with-numba = [
     "numba>=0.64.0",
@@ -37,6 +41,12 @@ dev = [
     "matplotlib>=3.11.2",
     "pytest>=9.0.2",
     "ruff>=0.16.10",
+]
+docs = [
+    "furo>=2025.12.19",
+    "myst-parser>=5.1.0",
+    "sphinx>=9.1.0",
+    "sphinx-autobuild>=2025.8.25",
 ]
 
 [build-system]
@@ -56,7 +66,10 @@ addopts = "-ra"
 
 [tool.ruff]
 line-length = 88
-target-version = "py310"
+target-version = "py314"
+
+[tool.ruff.format]
+line-ending = "lf"
 
 [tool.ruff.lint]
 select = [
@@ -65,4 +78,9 @@ select = [
     "I",
     "B",
     "UP",
+    "D1",
 ]
+
+[tool.ruff.lint.per-file-ignores]
+# Test names describe what they check.
+"tests/**" = ["D1"]

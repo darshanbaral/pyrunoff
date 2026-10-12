@@ -1,3 +1,5 @@
+"""Level-pool reservoir routing method."""
+
 from dataclasses import dataclass
 
 import numpy
@@ -8,7 +10,7 @@ from pyrunoff.utils import (
     DischargeSeries,
     ElevationSeries,
     StorageSeries,
-    validate_series_type,
+    _validate_series_type,
 )
 from pyrunoff.utils.compat import jit
 
@@ -33,6 +35,9 @@ class LevelPoolOutput:
 class LevelPool:
     """Route inflow through a reservoir with one or more outlet curves.
 
+    Inflow and discharge are in cubic feet per second, storage is in acre-feet
+    and elevation is in feet.
+
     :param inflow_series: Discharge entering the reservoir.
     :param elevation_storage: Elevation-storage rating curve.
     :param storage_discharges: Named storage-discharge curves, one per outlet/spillway.
@@ -51,7 +56,7 @@ class LevelPool:
 
     def __post_init__(self):
         """Validate the storage conversion factor and apply the optional end."""
-        validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
+        _validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
         if self.storage_adjustment_factor <= 0:
             raise ValueError("storage_adjustment_factor must be greater than zero.")
         self._fix_end()
@@ -65,6 +70,8 @@ class LevelPool:
         """Route inflow and return outlet flows, total flow, storage, and elevation.
 
         :return: Typed output series aligned to the original inflow index.
+        :raises ValueError: If no storage-discharge curve is given, or a curve
+            has fewer than two points.
         """
         inflow = self.inflow_series.data
         time_step = self.inflow_series.time_step
@@ -135,7 +142,15 @@ class LevelPool:
 def _pack_storage_discharge_curves(
     storage_discharges: list[StorageDischarge], storage_adjustment_factor: float
 ) -> tuple[numpy.ndarray, numpy.ndarray]:
-    """Pack rating curves of different lengths into arrays for Numba routing."""
+    """Pack rating curves of different lengths into arrays for Numba routing.
+
+    :param storage_discharges: Storage-discharge curves, one per outlet.
+    :param storage_adjustment_factor: Factor applied to the curves' storage
+        values.
+    :return: An array of shape ``(outlets, 2, max_length)`` holding storage and
+        discharge rows, padded past each curve's length, and the curve lengths.
+    :raises ValueError: If a curve has fewer than two points.
+    """
     lengths = numpy.asarray(
         [len(curve.storage) for curve in storage_discharges], dtype=numpy.int64
     )
@@ -160,7 +175,16 @@ def _pack_storage_discharge_curves(
 def _level_pool_kernel(
     inflow_arr, initial_storage, storage_discharge_arr, curve_lengths, time_step_seconds
 ):
-    """Calculate per-outlet outflows and reservoir storage at each time step."""
+    """Calculate per-outlet outflows and reservoir storage at each time step.
+
+    :param inflow_arr: Inflow per step in cubic feet per second.
+    :param initial_storage: Storage at the first step, in adjusted units.
+    :param storage_discharge_arr: Packed curves from
+        :func:`_pack_storage_discharge_curves`.
+    :param curve_lengths: Number of points in each packed curve.
+    :param time_step_seconds: Time step in seconds.
+    :return: Outflow per step and outlet, and storage per step.
+    """
     n_times = len(inflow_arr)
     n_outlets = storage_discharge_arr.shape[0]
     outflow_arr = numpy.zeros((n_times, n_outlets), dtype=numpy.float64)
@@ -197,7 +221,13 @@ def _level_pool_kernel(
 
 @jit(nopython=True, cache=True)
 def _interpolate_discharge(storage, curve, length):
-    """Interpolate discharge and hold endpoint values outside the curve range."""
+    """Interpolate discharge and hold endpoint values outside the curve range.
+
+    :param storage: Storage to look up.
+    :param curve: Packed curve with storage in row 0 and discharge in row 1.
+    :param length: Number of valid points in ``curve``.
+    :return: Discharge at ``storage``.
+    """
     if storage <= curve[0, 0]:
         return curve[1, 0]
     if storage >= curve[0, length - 1]:

@@ -1,10 +1,12 @@
+"""Muskingum reach routing method."""
+
 from dataclasses import dataclass
 from datetime import timedelta
 
 import numpy
 import pandas
 
-from pyrunoff.utils import DischargeSeries, validate_series_type
+from pyrunoff.utils import DischargeSeries, _validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import RELATIVE_EPSILON, SECONDS_PER_HOUR
 
@@ -24,7 +26,8 @@ class Muskingum:
     """Route discharge through a reach using the Muskingum method.
 
     :param inflow_series: Discharge entering the reach.
-    :param k: Muskingum storage time constant.
+    :param k: Muskingum storage time constant. It must satisfy the stability
+        condition for the inflow time step.
     :param x: Weighting factor between zero and 0.5.
     :param end: Optional final timestamp for the inflow series.
     """
@@ -36,7 +39,7 @@ class Muskingum:
 
     def __post_init__(self):
         """Apply the optional end time and validate routing parameters."""
-        validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
+        _validate_series_type(self.inflow_series, DischargeSeries, "inflow_series")
         self._fix_end()
         self.update_params(self.k, self.x)
 
@@ -46,7 +49,7 @@ class Muskingum:
             self.inflow_series = self.inflow_series.fix_end(self.end)
 
     @staticmethod
-    def validate_params(k: pandas.Timedelta, x: float, time_step: pandas.Timedelta):
+    def _validate_params(k: pandas.Timedelta, x: float, time_step: pandas.Timedelta):
         """Validate the Muskingum parameters and numerical stability condition.
 
         :param k: Muskingum storage time constant.
@@ -67,9 +70,14 @@ class Muskingum:
             raise ValueError("Time step violates Muskingum stability condition.")
 
     def update_params(self, k: pandas.Timedelta, x: float):
-        """Validate and update the storage time constant and weighting factor."""
+        """Validate and update the storage time constant and weighting factor.
+
+        :param k: Muskingum storage time constant.
+        :param x: Weighting factor, from zero to 0.5.
+        :raises ValueError: If a value is invalid or unstable for the time step.
+        """
         k = pandas.to_timedelta(k)
-        self.validate_params(k=k, x=x, time_step=self.inflow_series.time_step)
+        self._validate_params(k=k, x=x, time_step=self.inflow_series.time_step)
         self.k = k
         self.x = x
 
@@ -119,7 +127,14 @@ class Muskingum:
 
 @jit(nopython=True, cache=True)
 def _muskingum_kernel(inflow_arr, f1, f2, f3):
-    """Calculate routed discharge using Muskingum recurrence coefficients."""
+    """Calculate routed discharge using Muskingum recurrence coefficients.
+
+    :param inflow_arr: Inflow per step in cubic feet per second.
+    :param f1: Current-inflow coefficient.
+    :param f2: Previous-inflow coefficient.
+    :param f3: Previous-outflow coefficient.
+    :return: Routed discharge per step.
+    """
     n = len(inflow_arr)
     outflow_arr = numpy.zeros(n, dtype=numpy.float64)
 

@@ -1,3 +1,9 @@
+"""Network model of basins, reaches, reservoirs and junctions.
+
+An element's type fixes which processes it computes (:data:`ELEMENT_PROCESSES`),
+and the model picks one method per process (:data:`METHOD_CLASSES`).
+"""
+
 from collections.abc import Mapping
 from dataclasses import dataclass, field
 from enum import StrEnum
@@ -9,11 +15,13 @@ from pyrunoff.loss import DeficitConstant, InitialConstant
 from pyrunoff.reach import Muskingum
 from pyrunoff.reservoir import LevelPool
 from pyrunoff.transform import ClarkUh
-from pyrunoff.utils import DischargeSeries, RainfallSeries, validate_series_type
+from pyrunoff.utils import DischargeSeries, RainfallSeries, _validate_series_type
 from pyrunoff.utils.network import Network
 
 
 class ElementType(StrEnum):
+    """Kind of node an element is in the network."""
+
     BASIN = "basin"
     REACH = "reach"
     JUNCTION = "junction"
@@ -133,7 +141,7 @@ ElementOutput = (
 )
 
 
-# Processes each element type computes, and the methods allowed for each.
+#: Processes each element type computes, and the methods allowed for each.
 ELEMENT_PROCESSES: dict[ElementType, dict[Process, tuple[Method, ...]]] = {
     ElementType.BASIN: {
         Process.LOSS: (Method.INITIAL_CONSTANT, Method.DEFICIT_CONSTANT),
@@ -146,7 +154,7 @@ ELEMENT_PROCESSES: dict[ElementType, dict[Process, tuple[Method, ...]]] = {
     ElementType.SINK: {},
 }
 
-# Class implementing each method.
+#: Class implementing each method.
 METHOD_CLASSES: dict[Method, type] = {
     Method.INITIAL_CONSTANT: InitialConstant,
     Method.DEFICIT_CONSTANT: DeficitConstant,
@@ -156,12 +164,12 @@ METHOD_CLASSES: dict[Method, type] = {
     Method.LEVEL_POOL: LevelPool,
 }
 
-# Constructor arguments for a method, keyed by element name,
-# e.g. ``loss_params["B1"] = {"initial_loss": 0.5, "constant_loss": 0.1}``.
+#: Constructor arguments for a method, keyed by element name,
+#: e.g. ``loss_params["B1"] = {"initial_loss": 0.5, "constant_loss": 0.1}``.
 ElementParams = Mapping[str, Mapping[str, Any]]
 
 
-def parse_methods(
+def _parse_methods(
     element_type: ElementType, methods: Mapping[str, str]
 ) -> dict[Process, Method]:
     """Convert method names keyed by process name, checking each is allowed.
@@ -206,7 +214,7 @@ class Element:
 
     def __post_init__(self):
         """Validate the methods and make them read-only."""
-        methods = parse_methods(
+        methods = _parse_methods(
             self.type, {str(k): str(v) for k, v in self.methods.items()}
         )
         missing = [str(p) for p in ELEMENT_PROCESSES[self.type] if p not in methods]
@@ -250,12 +258,19 @@ class Model:
     defaults: dict[ElementType, dict[Process, Method]] = field(default_factory=dict)
 
     @classmethod
-    def from_dict(cls, data: dict) -> "Model":
-        """Build a model from its dictionary form (see class docstring)."""
+    def from_dict(cls, data: dict) -> Model:
+        """Build a model from its dictionary form (see class docstring).
+
+        :param data: Model in dictionary form.
+        :return: The model, with elements in execution order.
+        :raises ValueError: If there is not exactly one sink, an element has no
+            type, a downstream element is undefined, or a method is invalid or
+            missing.
+        """
         defaults = {}
         for type_name, methods in data.get("defaults", {}).items():
             type_ = ElementType(type_name)
-            defaults[type_] = parse_methods(type_, methods)
+            defaults[type_] = _parse_methods(type_, methods)
 
         entries = data["elements"]
 
@@ -295,7 +310,7 @@ class Model:
 
             element_methods = {
                 **defaults.get(type_, {}),
-                **parse_methods(type_, entry),
+                **_parse_methods(type_, entry),
             }
             all_elements[name] = Element(name, type_, element_methods)
 
@@ -312,7 +327,7 @@ class Model:
 
     def to_dict(self) -> dict:
         """Return the dictionary form; elements list only methods that differ
-        from :attr:`defaults`."""
+        from ``defaults``."""
         downstream = {
             upstream: element
             for element, upstreams in self.upstream_elements.items()
@@ -349,8 +364,8 @@ class Model:
     ) -> dict[str, ElementOutput]:
         """Route rainfall through the model in execution order.
 
-        Each element uses the method given in :attr:`Element.methods` for each
-        of its processes. Parameters are keyed by element name and passed as
+        Each element uses the method given in its :class:`Element`'s ``methods``
+        for each of its processes. Parameters are keyed by element name and passed as
         given to the class of the method chosen for that element, so each
         element's parameters must be consistent with its chosen method and
         match that class's constructor (e.g. ``initial_loss`` and
@@ -368,7 +383,7 @@ class Model:
             :class:`ReachOutput`, :class:`ReservoirOutput`,
             :class:`JunctionOutput` or :class:`SinkOutput` depending on the
             element type.
-        :raises TypeError: If a basin's rainfall is not a :class:`RainfallSeries`.
+        :raises TypeError: If a basin's rainfall is not a :class:`.RainfallSeries`.
         :raises ValueError: If rainfall or parameters are missing for an
             element, a basin has upstream elements, or another element has none.
         """
@@ -387,7 +402,7 @@ class Model:
                 if name not in rainfall:
                     raise ValueError(f"No rainfall for basin '{name}'")
                 basin_rainfall = rainfall[name]
-                validate_series_type(
+                _validate_series_type(
                     basin_rainfall, RainfallSeries, f"rainfall for basin '{name}'"
                 )
 
@@ -469,6 +484,15 @@ class Model:
 
         Loss, transform and baseflow methods take ``rainfall_series``; routing
         methods take ``inflow_series``.
+
+        :param element: Element to build the method for.
+        :param process: Process whose method to build.
+        :param series: Input series passed to the method.
+        :param params: Method arguments keyed by element name.
+        :param params_name: :meth:`route` argument ``params`` came from, used
+            in the error message.
+        :return: The method instance, ready to ``route()``.
+        :raises ValueError: If ``params`` has no entry for the element.
         """
         if params is None or element.name not in params:
             raise ValueError(

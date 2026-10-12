@@ -1,3 +1,5 @@
+"""Model-performance metrics comparing observed and simulated series."""
+
 from dataclasses import dataclass
 
 import numpy
@@ -21,7 +23,7 @@ class KgeResult:
     beta: float
 
     @classmethod
-    def empty(cls) -> "KgeResult":
+    def empty(cls) -> KgeResult:
         """Return a result whose score and components are all undefined."""
         return KgeResult(numpy.nan, numpy.nan, numpy.nan, numpy.nan)
 
@@ -34,6 +36,9 @@ def nse(
 ) -> float:
     """
     Calculate the Nash–Sutcliffe Efficiency (NSE).
+
+    The series are aligned by index, and pairs with a missing value are
+    omitted.
 
     :param observed_data: Observed values indexed by time.
     :param simulated_data: Simulated values indexed by time.
@@ -65,6 +70,9 @@ def kge(
 ) -> KgeResult:
     """
     Calculate the 2012 Kling–Gupta Efficiency (KGE′) and its components.
+
+    The series are aligned by index, and pairs with a missing value are
+    omitted.
 
     :param observed_data: Observed values indexed by time.
     :param simulated_data: Simulated values indexed by time.

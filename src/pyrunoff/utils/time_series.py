@@ -1,17 +1,83 @@
+"""Time series of rainfall, discharge, elevation and storage values."""
+
 from collections.abc import Iterable
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import Self, TypeVar
+from typing import Self
 
 import pandas
 
 from pyrunoff.utils.constants import ABSOLUTE_EPSILON, NANOSECONDS_PER_SECOND
-from pyrunoff.utils.tso import check_time_step, get_time_step
-
-SeriesOrFrame = TypeVar("SeriesOrFrame", pandas.Series, pandas.DataFrame)
 
 
-def _fix_end(
+def _get_time_step(
+    dt_idx: pandas.DatetimeIndex,
+) -> pandas.Timedelta:
+    """
+    Infer the constant interval between values in a datetime index.
+
+    :param dt_idx: Datetime index with at least two uniformly spaced values.
+    :return: Time interval between adjacent values.
+    """
+    if not isinstance(dt_idx, pandas.DatetimeIndex):
+        raise TypeError("input must be a DatetimeIndex")
+
+    if len(dt_idx) <= 1:
+        raise ValueError("Index must have at least 2 values to determine a timestep.")
+
+    idx_arr = dt_idx.to_numpy()
+    diffs_us = (idx_arr[1:] - idx_arr[:-1]).astype("timedelta64[us]")  # micro-seconds
+    diffs_s = (diffs_us.astype(float) / 1e6).round().astype("timedelta64[s]")
+    first_diff_s = diffs_s[0]
+
+    if not (diffs_s == first_diff_s).all():
+        raise ValueError("Data is not uniformly spaced (Internal step mismatch).")
+
+    return pandas.Timedelta(first_diff_s)
+
+
+def _check_time_step(
+    time_step: timedelta,
+    tc: timedelta | None = None,
+    name: str = "time_step",
+):
+    """Validate a positive time step and its relationship to an optional limit.
+
+    Steps shorter than an hour must evenly divide an hour; longer steps must
+    be whole hours. When ``tc`` is provided, the step cannot exceed it.
+
+    :param time_step: Duration to validate.
+    :param tc: Optional upper bound for the duration.
+    :param name: Label used in validation errors.
+    :raises TypeError: If either duration has an unsupported type.
+    :raises ValueError: If a duration is non-positive or violates the rules.
+    """
+    if not isinstance(time_step, pandas.Timedelta | timedelta):
+        raise TypeError("time_step needs to be a timedelta")
+
+    ts_s = int(time_step.total_seconds())
+
+    if ts_s <= 0:
+        raise ValueError(f"{name} must be a positive duration")
+
+    hr_s = 3600
+    if ts_s < hr_s:
+        if hr_s % ts_s != 0:
+            raise ValueError(f"{name} must evenly divide 60 minutes.")
+    else:
+        if ts_s % hr_s != 0:
+            raise ValueError(f"{name} must be a multiple of 60 minutes.")
+
+    if tc is not None:
+        if not isinstance(tc, pandas.Timedelta | timedelta):
+            raise TypeError("tc needs to be a timedelta")
+
+        tc_s = int(tc.total_seconds())
+        if ts_s > tc_s:
+            raise ValueError(f"{name} time_step cannot be bigger than tc.")
+
+
+def _fix_end[SeriesOrFrame: (pandas.Series, pandas.DataFrame)](
     data: SeriesOrFrame, end: pandas.Timestamp | datetime, time_step: pandas.Timedelta
 ) -> SeriesOrFrame:
     """Truncate ``data`` at ``end``, or extend it to ``end`` with zero rows.
@@ -19,6 +85,9 @@ def _fix_end(
     :param data: Values with a sorted ``DatetimeIndex``.
     :param end: Timestamp at which the result ends.
     :param time_step: Interval of the added timestamps.
+    :return: Values ending at ``end``.
+    :raises TypeError: If ``data`` has no ``DatetimeIndex``.
+    :raises ValueError: If ``data`` is empty.
     """
     if not isinstance(data.index, pandas.DatetimeIndex):
         raise TypeError("Series must have a DatetimeIndex.")
@@ -67,12 +136,12 @@ class TimeSeries:
             self.sorted = True
 
         if self._time_step is None:
-            time_step = get_time_step(self.data.index)
-            check_time_step(time_step)
+            time_step = _get_time_step(self.data.index)
+            _check_time_step(time_step)
             self._time_step = time_step
 
-        self.validate_time_step(self._time_step)
-        self.validate_data()
+        self._validate_time_step(self._time_step)
+        self._validate_data()
 
     @property
     def time_step(self):
@@ -81,14 +150,22 @@ class TimeSeries:
 
     @time_step.setter
     def time_step(self, value: pandas.Timedelta | timedelta):
-        """Set the series interval after validating its units."""
+        """Set the series interval after validating its units.
+
+        :param value: New interval, in whole minutes.
+        """
         value = pandas.to_timedelta(value)
-        self.validate_time_step(value)
+        self._validate_time_step(value)
         self._time_step = value
 
     @staticmethod
-    def validate_time_step(time_step: pandas.Timedelta):
-        """Require a pandas duration expressed in whole minutes."""
+    def _validate_time_step(time_step: pandas.Timedelta):
+        """Require a pandas duration expressed in whole minutes.
+
+        :param time_step: Interval to check.
+        :raises TypeError: If ``time_step`` is not a ``pandas.Timedelta``.
+        :raises ValueError: If ``time_step`` is not a whole number of minutes.
+        """
         if not isinstance(time_step, pandas.Timedelta):
             raise TypeError("_time_step must be pandas.Timedelta")
 
@@ -96,11 +173,17 @@ class TimeSeries:
             raise ValueError(f"time_step must be whole minutes, not {time_step}")
 
     @classmethod
-    def sum(cls, series: Iterable["TimeSeries"]) -> "TimeSeries":
+    def sum(cls, series: Iterable[TimeSeries]) -> TimeSeries:
         """Return the elementwise sum of aligned series with matching intervals.
 
         Every series must be an instance of the class ``sum`` is called on, so
         ``DischargeSeries.sum`` only accepts discharge series.
+
+        :param series: Series to add, with identical indexes and time steps.
+        :return: Sum, of the class ``sum`` is called on.
+        :raises TypeError: If a series is not of that class.
+        :raises ValueError: If no series are given, or they are unsorted or
+            their time steps or indexes differ.
         """
         series: list[TimeSeries] = list(series)
 
@@ -167,8 +250,8 @@ class TimeSeries:
             raise ValueError(f"Columns {duplicated} appear more than once")
 
         data = data[names].sort_index()
-        time_step = get_time_step(data.index)
-        check_time_step(time_step)
+        time_step = _get_time_step(data.index)
+        _check_time_step(time_step)
         if end is not None:
             data = _fix_end(data, end, time_step)
 
@@ -180,7 +263,7 @@ class TimeSeries:
                 raise type(err)(f"Column '{name}': {err}") from err
         return result
 
-    def copy(self) -> "TimeSeries":
+    def copy(self) -> TimeSeries:
         """Return a copy of the same class with independent underlying data."""
         return type(self)(
             data=self.data.copy(deep=False),
@@ -200,12 +283,17 @@ class TimeSeries:
         data = _fix_end(self.data, end, self.time_step)
         return type(self)(data=data, sorted=True, _time_step=self.time_step)
 
-    def validate_data(self):
+    def _validate_data(self):
         """Validate values specific to a time-series subclass."""
         pass
 
     def resample_at(self, time_step: pandas.Timedelta | timedelta) -> pandas.Series:
-        """Return series values resampled to the requested interval."""
+        """Return series values resampled to the requested interval.
+
+        :param time_step: Interval of the returned values.
+        :return: Resampled values.
+        :raises NotImplementedError: Unless a subclass supports resampling.
+        """
         raise NotImplementedError(f"{type(self).__name__} does not support resampling")
 
 
@@ -236,13 +324,17 @@ class StorageSeries(TimeSeries):
 class RainfallSeries(TimeSeries):
     """Time series of incremental rainfall values."""
 
-    def validate_data(self):
+    def _validate_data(self):
         """Reject rainfall values below the accepted negative tolerance."""
-        self.validate_minimum_rain(self.data)
+        self._validate_minimum_rain(self.data)
 
     @staticmethod
-    def validate_minimum_rain(data: pandas.Series):
-        """Raise an error if any rainfall value is negative beyond tolerance."""
+    def _validate_minimum_rain(data: pandas.Series):
+        """Raise an error if any rainfall value is negative beyond tolerance.
+
+        :param data: Rainfall values to check.
+        :raises ValueError: If a value is below ``-ABSOLUTE_EPSILON``.
+        """
         if (data < -ABSOLUTE_EPSILON).any():
             raise ValueError("Rainfall cannot be negative")
 

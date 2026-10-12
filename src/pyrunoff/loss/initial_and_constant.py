@@ -1,10 +1,12 @@
+"""Initial and constant loss method."""
+
 from dataclasses import dataclass
 from datetime import timedelta
 
 import numpy
 import pandas
 
-from pyrunoff.utils import validate_non_negative, validate_series_type
+from pyrunoff.utils import _validate_non_negative, _validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
 from pyrunoff.utils.time_series import RainfallSeries
@@ -41,7 +43,7 @@ class InitialConstant:
 
     def __post_init__(self):
         """Validate loss parameters and the optional reset duration."""
-        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
+        _validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         self.update_params(self.initial_loss, self.constant_loss)
         if (
             self.reset_initial_duration is not None
@@ -55,17 +57,27 @@ class InitialConstant:
     def update_params(
         self, initial_loss: float | None = None, constant_loss: float | None = None
     ):
-        """Validate and update any supplied loss parameters."""
+        """Validate and update any supplied loss parameters.
+
+        Parameters left as ``None`` keep their current values.
+
+        :param initial_loss: Initial loss depth in inches.
+        :param constant_loss: Constant loss rate in inches per hour.
+        :raises ValueError: If a supplied value is negative.
+        """
         if initial_loss is not None:
-            validate_non_negative(initial_loss, "initial_loss")
+            _validate_non_negative(initial_loss, "initial_loss")
             self.initial_loss = initial_loss
 
         if constant_loss is not None:
-            validate_non_negative(constant_loss, "constant_loss")
+            _validate_non_negative(constant_loss, "constant_loss")
             self.constant_loss = constant_loss
 
     def route(self) -> InitialConstantOutput:
-        """Separate rainfall into excess and total-loss series."""
+        """Separate rainfall into excess and total-loss series.
+
+        :return: Typed output holding the excess and total-loss series.
+        """
         time_step = self.rainfall_series.time_step
         time_step_secs = time_step.total_seconds()
         time_step_hrs = time_step_secs / SECONDS_PER_HOUR
@@ -102,7 +114,16 @@ def _initial_constant_kernel(
     initial_loss,
     constant_loss_per_step,
 ):
-    """Calculate per-step rainfall losses for the initial-constant model."""
+    """Calculate per-step rainfall losses for the initial-constant model.
+
+    :param rain: Incremental rainfall per step in inches.
+    :param time_step_secs: Time step in seconds.
+    :param reset_duration_secs: Dry duration in seconds after which the initial
+        loss is restored; zero disables the reset.
+    :param initial_loss: Initial loss depth in inches.
+    :param constant_loss_per_step: Constant loss per step in inches.
+    :return: Total loss per step in inches.
+    """
     curr_dry_duration = 0.0
     remaining_initial_loss = initial_loss
 

@@ -3,7 +3,8 @@
 import functools
 import warnings
 
-NUMBA_MISSING_MESSAGE = (
+#: Warning issued when a kernel runs without Numba.
+_NUMBA_MISSING_MESSAGE = (
     "Numba not found; numerical kernels are running in pure Python mode. "
     "Install numba for a 10-100x speedup."
 )
@@ -18,7 +19,7 @@ def _warn_numba_missing():
     if _warned:
         return
     _warned = True
-    warnings.warn(NUMBA_MISSING_MESSAGE, RuntimeWarning, stacklevel=3)
+    warnings.warn(_NUMBA_MISSING_MESSAGE, RuntimeWarning, stacklevel=3)
 
 
 def python_jit(*args, **kwargs):
@@ -33,7 +34,11 @@ def python_jit(*args, **kwargs):
     """
 
     def decorator(func):
-        """Wrap a function with the one-time Numba-unavailable warning."""
+        """Wrap a function with the one-time Numba-unavailable warning.
+
+        :param func: Function to wrap.
+        :return: The wrapped function.
+        """
 
         @functools.wraps(func)
         def wrapper(*args, **kwargs):
@@ -49,6 +54,7 @@ def python_jit(*args, **kwargs):
 try:
     from numba import jit
 
+    #: Whether Numba is installed; when it is not, ``jit`` is :func:`python_jit`.
     HAS_NUMBA = True
 
 except ImportError:

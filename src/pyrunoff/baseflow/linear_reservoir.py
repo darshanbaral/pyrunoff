@@ -1,3 +1,5 @@
+"""Linear-reservoir baseflow method."""
+
 from dataclasses import dataclass
 from datetime import timedelta
 
@@ -7,8 +9,8 @@ import pandas
 from pyrunoff.utils import (
     DischargeSeries,
     RainfallSeries,
-    validate_positive,
-    validate_series_type,
+    _validate_positive,
+    _validate_series_type,
 )
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import ACRE_TO_SQFEET, RELATIVE_EPSILON, SECONDS_PER_HOUR
@@ -36,8 +38,8 @@ class LinearReservoir:
 
     def __post_init__(self):
         """Validate parameters and apply the optional end time."""
-        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
-        validate_positive(self.basin_area, "basin_area")
+        _validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
+        _validate_positive(self.basin_area, "basin_area")
         self.fix_end()
         self.update_params(
             initial_q=self.initial_q, gw_fraction=self.gw_fraction, k=self.k
@@ -49,26 +51,43 @@ class LinearReservoir:
             self.rainfall_series = self.rainfall_series.fix_end(self.end)
 
     @staticmethod
-    def validate_gw_fraction(gw_fraction):
-        """Require the groundwater fraction to lie between zero and one."""
+    def _validate_gw_fraction(gw_fraction):
+        """Require the groundwater fraction to lie between zero and one.
+
+        :param gw_fraction: Fraction of rainfall loss that becomes groundwater.
+        :raises ValueError: If ``gw_fraction`` is outside 0 to 1.
+        """
         if gw_fraction > 1 or gw_fraction < 0:
             raise ValueError("'gw_fraction' should be between 0 and 1")
 
     @staticmethod
-    def validate_initial_q(initial_q):
-        """Require the initial discharge to be non-negative."""
+    def _validate_initial_q(initial_q):
+        """Require the initial discharge to be non-negative.
+
+        :param initial_q: Initial discharge in cubic feet per second.
+        :raises ValueError: If ``initial_q`` is negative.
+        """
         if initial_q < 0:
             raise ValueError("'initial_q' should not be negative")
 
     @staticmethod
-    def validate_k(k: pandas.Timedelta):
-        """Require a positive reservoir recession time."""
+    def _validate_k(k: pandas.Timedelta):
+        """Require a positive reservoir recession time.
+
+        :param k: Reservoir recession time.
+        :raises ValueError: If ``k`` is zero or negative.
+        """
         if k <= pandas.Timedelta(minutes=0):
             raise ValueError("'k' should be greater than 0")
 
     @staticmethod
-    def validate_stability(k: pandas.Timedelta, time_step: pandas.Timedelta):
-        """Require a time step below the linear-reservoir stability limit."""
+    def _validate_stability(k: pandas.Timedelta, time_step: pandas.Timedelta):
+        """Require a time step below the linear-reservoir stability limit.
+
+        :param k: Reservoir recession time.
+        :param time_step: Interval between rainfall values.
+        :raises ValueError: If ``time_step`` is not less than ``2 * k``.
+        """
         time_step_hr = time_step.total_seconds() / SECONDS_PER_HOUR
         k_hr = k.total_seconds() / SECONDS_PER_HOUR
         if time_step_hr >= 2 * k_hr * (1 - RELATIVE_EPSILON):
@@ -83,25 +102,36 @@ class LinearReservoir:
         gw_fraction: float | None = None,
         k: pandas.Timedelta | timedelta | None = None,
     ):
-        """Validate and update any supplied routing parameters."""
+        """Validate and update any supplied routing parameters.
+
+        Parameters left as ``None`` keep their current values.
+
+        :param initial_q: Initial discharge in cubic feet per second.
+        :param gw_fraction: Fraction of rainfall loss that becomes groundwater.
+        :param k: Reservoir recession time.
+        :raises ValueError: If a supplied value is invalid.
+        """
         if initial_q is not None:
-            self.validate_initial_q(initial_q)
+            self._validate_initial_q(initial_q)
             self.initial_q = initial_q
 
         if gw_fraction is not None:
-            self.validate_gw_fraction(gw_fraction)
+            self._validate_gw_fraction(gw_fraction)
             self.gw_fraction = gw_fraction
 
         if k is not None:
             k = pandas.Timedelta(k)
-            self.validate_k(k)
-            self.validate_stability(k, self.rainfall_series.time_step)
+            self._validate_k(k)
+            self._validate_stability(k, self.rainfall_series.time_step)
             self.k = k
 
     def route(
         self,
     ) -> DischargeSeries:
-        """Route the groundwater contribution and return discharge values."""
+        """Route the groundwater contribution and return discharge values.
+
+        :return: Baseflow in cubic feet per second.
+        """
 
         time_step = self.rainfall_series.time_step
         time_step_seconds = time_step.total_seconds()
@@ -137,7 +167,14 @@ class LinearReservoir:
 
 @jit(nopython=True, cache=True)
 def _linear_reservoir_kernel(inflow, initial_q, c1, c2):
-    """Calculate discharge using the linear-reservoir recurrence."""
+    """Calculate discharge using the linear-reservoir recurrence.
+
+    :param inflow: Groundwater inflow rate per step in cubic feet per second.
+    :param initial_q: Discharge at the first step.
+    :param c1: Inflow routing coefficient.
+    :param c2: Previous-outflow routing coefficient.
+    :return: Discharge per step.
+    """
     n = len(inflow)
     base_flow = numpy.empty(n, dtype=numpy.float64)
     base_flow[0] = initial_q

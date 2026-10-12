@@ -1,14 +1,15 @@
+"""Deficit and constant loss method."""
+
 from dataclasses import dataclass
 from datetime import timedelta
 
 import numpy
 import pandas
 
-from pyrunoff.utils import validate_non_negative, validate_series_type
+from pyrunoff.utils import _validate_non_negative, _validate_series_type
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
-from pyrunoff.utils.time_series import RainfallSeries
-from pyrunoff.utils.tso import check_time_step, get_time_step
+from pyrunoff.utils.time_series import RainfallSeries, _check_time_step, _get_time_step
 
 
 @dataclass(slots=True)
@@ -53,7 +54,7 @@ class DeficitConstant:
 
     def __post_init__(self):
         """Validate the initial model parameters."""
-        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
+        _validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
         self.update_params(
             self.max_deficit,
             self.constant_loss,
@@ -63,8 +64,15 @@ class DeficitConstant:
         )
 
     @staticmethod
-    def validate_recovery_time(recovery_time: timedelta, recover_deficit: bool):
-        """Require a positive recovery duration when recovery is enabled."""
+    def _validate_recovery_time(recovery_time: timedelta, recover_deficit: bool):
+        """Require a positive recovery duration when recovery is enabled.
+
+        :param recovery_time: Duration for the deficit to recover to 99% of its
+            maximum.
+        :param recover_deficit: Whether the deficit recovers during dry steps.
+        :raises ValueError: If recovery is enabled and ``recovery_time`` is
+            missing or not positive.
+        """
         if recover_deficit:
             if recovery_time is None:
                 raise ValueError(
@@ -82,13 +90,24 @@ class DeficitConstant:
         recover_deficit: bool | None = None,
         initial_deficit: float | None = None,
     ):
-        """Validate and update any supplied loss-model parameters."""
+        """Validate and update any supplied loss-model parameters.
+
+        Parameters left as ``None`` keep their current values.
+
+        :param max_deficit: Maximum soil-moisture deficit in inches.
+        :param constant_loss: Constant loss rate in inches per hour.
+        :param recovery_time: Duration for the deficit to recover to 99% of its
+            maximum.
+        :param recover_deficit: Whether the deficit recovers during dry steps.
+        :param initial_deficit: Starting soil-moisture deficit in inches.
+        :raises ValueError: If a supplied value is invalid.
+        """
         if max_deficit is not None:
-            validate_non_negative(max_deficit, "max_deficit")
+            _validate_non_negative(max_deficit, "max_deficit")
             self.max_deficit = max_deficit
 
         if constant_loss is not None:
-            validate_non_negative(constant_loss, "constant_loss")
+            _validate_non_negative(constant_loss, "constant_loss")
             self.constant_loss = constant_loss
 
         # recovery_time is required whenever recovery is on, so check the pair
@@ -97,21 +116,24 @@ class DeficitConstant:
             recover_deficit = self.recover_deficit
         if recovery_time is None:
             recovery_time = self.recovery_time
-        self.validate_recovery_time(recovery_time, recover_deficit)
+        self._validate_recovery_time(recovery_time, recover_deficit)
         self.recover_deficit = recover_deficit
         self.recovery_time = recovery_time
 
         if initial_deficit is not None:
-            validate_non_negative(initial_deficit, "initial_deficit")
+            _validate_non_negative(initial_deficit, "initial_deficit")
             self.initial_deficit = initial_deficit
 
     def route(self) -> DeficitConstantOutput:
-        """Return excess rainfall, deficit, and applied loss series."""
+        """Return excess rainfall, deficit, and applied loss series.
+
+        :return: Typed output holding the excess, deficit and loss series.
+        """
         rain = self.rainfall_series.data
         constant_loss = self.constant_loss
 
-        time_step = get_time_step(rain.index)
-        check_time_step(time_step)
+        time_step = _get_time_step(rain.index)
+        _check_time_step(time_step)
         time_step_hours = time_step.total_seconds() / SECONDS_PER_HOUR
         constant_loss_per_time_step = constant_loss * time_step_hours
 
@@ -164,7 +186,16 @@ class DeficitConstant:
 def _deficit_constant_kernel(
     rain_arr, initial_deficit, max_deficit, alpha, constant_loss_per_ts, recover_deficit
 ):
-    """Calculate rainfall excess, soil deficit, and constant loss per step."""
+    """Calculate rainfall excess, soil deficit, and constant loss per step.
+
+    :param rain_arr: Incremental rainfall per step in inches.
+    :param initial_deficit: Starting soil-moisture deficit in inches.
+    :param max_deficit: Maximum soil-moisture deficit in inches.
+    :param alpha: Fraction of the remaining deficit recovered per dry step.
+    :param constant_loss_per_ts: Constant loss per step in inches.
+    :param recover_deficit: Whether the deficit recovers during dry steps.
+    :return: Excess rainfall, deficit and applied constant loss per step.
+    """
     n = len(rain_arr)
     excess_precip_arr = numpy.zeros(n, dtype=numpy.float64)
     deficit_arr = numpy.zeros(n, dtype=numpy.float64)

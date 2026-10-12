@@ -1,4 +1,5 @@
-from . import baseflow, loss, reach, reservoir, transform
-from .utils import tso
+"""Hydrologic runoff and routing calculations."""
 
-__all__ = ["baseflow", "loss", "reach", "reservoir", "transform", "tso"]
+from . import baseflow, loss, reach, reservoir, transform
+
+__all__ = ["baseflow", "loss", "reach", "reservoir", "transform"]

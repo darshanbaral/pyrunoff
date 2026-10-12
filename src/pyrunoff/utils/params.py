@@ -1,3 +1,5 @@
+"""Read model, parameter and rainfall files for a :class:`.Model`."""
+
 import dataclasses
 import json
 from collections.abc import Mapping
@@ -20,15 +22,15 @@ from pyrunoff.utils.model import (
     Process,
 )
 
-# Section of the parameter file holding each element type.
-SECTIONS: dict[str, ElementType] = {
+#: Section of the parameter file holding each element type.
+_SECTIONS: dict[str, ElementType] = {
     "basins": ElementType.BASIN,
     "reaches": ElementType.REACH,
     "reservoirs": ElementType.RESERVOIR,
 }
 
-# :meth:`Model.route` argument that receives each process's parameters.
-ROUTE_ARGUMENTS: dict[tuple[ElementType, Process], str] = {
+#: :meth:`.Model.route` argument that receives each process's parameters.
+_ROUTE_ARGUMENTS: dict[tuple[ElementType, Process], str] = {
     (ElementType.BASIN, Process.LOSS): "loss_params",
     (ElementType.BASIN, Process.TRANSFORM): "transform_params",
     (ElementType.BASIN, Process.BASEFLOW): "baseflow_params",
@@ -36,18 +38,23 @@ ROUTE_ARGUMENTS: dict[tuple[ElementType, Process], str] = {
     (ElementType.RESERVOIR, Process.ROUTING): "reservoir_params",
 }
 
-# Element-level parameters, passed to any of the element's methods that take them.
-SHARED_PARAMS = {"basin_area"}
+#: Element-level parameters, passed to any of the element's methods that take them.
+_SHARED_PARAMS = {"basin_area"}
 
-# Method arguments :meth:`Model.route` supplies, so not read from the file.
-ROUTE_INPUTS = {"rainfall_series", "inflow_series"}
+#: Method arguments :meth:`.Model.route` supplies, so not read from the file.
+_ROUTE_INPUTS = {"rainfall_series", "inflow_series"}
 
-# Units accepted for durations, converted to ``pandas.Timedelta``.
+#: Units accepted for durations, converted to ``pandas.Timedelta``.
 TIME_UNITS = {"seconds", "minutes", "hours"}
 
 
 def load_model(path: str | Path) -> Model:
-    """Read a model file; see :meth:`Model.from_dict` for its form."""
+    """Read a model file; see :meth:`.Model.from_dict` for its form.
+
+    :param path: JSON model file.
+    :return: The model.
+    :raises ValueError: If the model is invalid.
+    """
     with open(path) as f:
         return Model.from_dict(json.load(f))
 
@@ -71,11 +78,11 @@ def load_rainfall(
     :param date_format: ``strftime`` format of the timestamps, e.g.
         ``"%m/%d/%Y %H:%M"``; inferred when ``None``.
     :param end: Optional timestamp at which every series ends; see
-        :meth:`RainfallSeries.fix_end`.
+        :meth:`.TimeSeries.fix_end`.
     :param end_offset: Optional end relative to the last timestamp in the file:
         positive adds zero rainfall (e.g. to let hydrographs recede), negative
         drops the last values; not combined with ``end``.
-    :return: Rainfall keyed by basin name, ready for :meth:`Model.route`.
+    :return: Rainfall keyed by basin name, ready for :meth:`.Model.route`.
     :raises ValueError: If both ``end`` and ``end_offset`` are given, the end
         is before the first timestamp, the timestamp column is missing or does
         not match ``date_format``, a basin has no column, or a column is invalid.
@@ -112,6 +119,11 @@ def load_params(path: str | Path, model: Model) -> dict[str, ElementParams]:
     """Read a parameter file for ``model``; see :func:`parse_params`.
 
     Curve file paths in the parameter file are relative to its directory.
+
+    :param path: JSON parameter file.
+    :param model: Model the parameters are for.
+    :return: Parameters keyed by :meth:`.Model.route` argument name.
+    :raises ValueError: If the parameters are invalid; see :func:`parse_params`.
     """
     path = Path(path)
     with open(path) as f:
@@ -124,7 +136,7 @@ def parse_params(
     model: Model,
     base_dir: str | Path = ".",
 ) -> dict[str, ElementParams]:
-    """Convert a parameter dictionary into the arguments of :meth:`Model.route`.
+    """Convert a parameter dictionary into the arguments of :meth:`.Model.route`.
 
     The dictionary groups elements by type, and each element's parameters by
     process and method::
@@ -148,8 +160,8 @@ def parse_params(
     - ``{"value": v, "units": u}``: a ``pandas.Timedelta`` when ``u`` is in
       :data:`TIME_UNITS`.
     - ``{"path": p, "<x>_column_name": ..., "<y>_column_name": ...}``: a curve
-      read from the CSV file ``p``; an :class:`ElevationStorage` for elevation
-      and storage columns, a :class:`StorageDischarge` for storage and
+      read from the CSV file ``p``; an :class:`.ElevationStorage` for elevation
+      and storage columns, a :class:`.StorageDischarge` for storage and
       discharge columns.
     - Any other dictionary: a dictionary of parameters, e.g. one curve per
       outlet.
@@ -159,14 +171,14 @@ def parse_params(
     here. Only the chosen method's parameters are read, but every method's
     parameter names are checked against its class.
 
-    Element-level parameters (see :data:`SHARED_PARAMS`) are passed to every
-    method of the element whose class takes them, unless the method's own
-    parameters set them.
+    Element-level parameters (``basin_area``) are passed to every method of the
+    element whose class takes them, unless the method's own parameters set
+    them.
 
     :param data: Parameters in the form above.
     :param model: Model the parameters are for; it gives each element's methods.
     :param base_dir: Directory curve file paths are relative to.
-    :return: Parameters keyed by :meth:`Model.route` argument name, so that
+    :return: Parameters keyed by :meth:`.Model.route` argument name, so that
         ``model.route(rainfall, **parse_params(data, model))`` runs the model.
     :raises ValueError: If an element is not in the model or has another type;
         a section, element key, method or parameter name is unknown; a used
@@ -176,16 +188,16 @@ def parse_params(
     base_dir = Path(base_dir)
     elements = {el.name: el for el in model.elements}
     result: dict[str, dict[str, dict[str, Any]]] = {
-        name: {} for name in ROUTE_ARGUMENTS.values()
+        name: {} for name in _ROUTE_ARGUMENTS.values()
     }
 
     for section, entries in data.items():
-        if section not in SECTIONS:
+        if section not in _SECTIONS:
             raise ValueError(
                 f"Unknown parameter section '{section}'; "
-                f"expected one of {list(SECTIONS)}"
+                f"expected one of {list(_SECTIONS)}"
             )
-        type_ = SECTIONS[section]
+        type_ = _SECTIONS[section]
         for name, entry in entries.items():
             element = elements.get(name)
             if element is None:
@@ -198,7 +210,7 @@ def parse_params(
                     "element in the model"
                 )
             for process, params in _element_params(element, entry, base_dir).items():
-                result[ROUTE_ARGUMENTS[(type_, process)]][name] = params
+                result[_ROUTE_ARGUMENTS[(type_, process)]][name] = params
 
     return result
 
@@ -206,19 +218,27 @@ def parse_params(
 def _element_params(
     element: Element, entry: Mapping, base_dir: Path
 ) -> dict[Process, dict[str, Any]]:
-    """Return the constructor arguments of each of the element's methods."""
+    """Return the constructor arguments of each of the element's methods.
+
+    :param element: Element the parameters are for.
+    :param entry: The element's entry in the parameter file.
+    :param base_dir: Directory curve file paths are relative to.
+    :return: Arguments of the chosen method, keyed by process.
+    :raises ValueError: If a key is unknown, the chosen method has no
+        parameters, or a required parameter is missing.
+    """
     processes = ELEMENT_PROCESSES[element.type]
     shared = {}
     groups = {}
     for key, value in entry.items():
-        if key in SHARED_PARAMS:
+        if key in _SHARED_PARAMS:
             shared[key] = _parse_value(value, base_dir, key)
         elif key in processes:
             groups[Process(key)] = value
         else:
             raise ValueError(
                 f"Unknown parameter '{key}' for {element.type} '{element.name}'; "
-                f"expected one of {[str(p) for p in processes] + sorted(SHARED_PARAMS)}"
+                f"must be one of {[str(p) for p in processes] + sorted(_SHARED_PARAMS)}"
             )
 
     params = {}
@@ -243,7 +263,7 @@ def _element_params(
         required = {
             f.name
             for f in class_fields
-            if f.name not in ROUTE_INPUTS
+            if f.name not in _ROUTE_INPUTS
             and f.default is dataclasses.MISSING
             and f.default_factory is dataclasses.MISSING
         }
@@ -259,7 +279,15 @@ def _element_params(
 def _method_params(
     element: Element, process: Process, group: Any
 ) -> dict[Method, Mapping]:
-    """Key a process's parameters by method, checking methods and names."""
+    """Key a process's parameters by method, checking methods and names.
+
+    :param element: Element the parameters are for.
+    :param process: Process the parameters are for.
+    :param group: The process's entry, keyed by method name.
+    :return: Unparsed parameters keyed by method.
+    :raises ValueError: If ``group`` is malformed, or a method or parameter
+        name is unknown.
+    """
     if not isinstance(group, Mapping):
         raise ValueError(
             f"{process} parameters for '{element.name}' must be an object keyed "
@@ -282,7 +310,7 @@ def _method_params(
         fields = {
             f.name
             for f in dataclasses.fields(METHOD_CLASSES[method])
-            if f.init and f.name not in ROUTE_INPUTS
+            if f.init and f.name not in _ROUTE_INPUTS
         }
         unknown = sorted(set(method_params) - fields)
         if unknown:
@@ -295,7 +323,14 @@ def _method_params(
 
 
 def _parse_value(value: Any, base_dir: Path, name: str) -> Any:
-    """Convert one parameter from its file form (see :func:`parse_params`)."""
+    """Convert one parameter from its file form (see :func:`parse_params`).
+
+    :param value: Parameter as read from the file.
+    :param base_dir: Directory curve file paths are relative to.
+    :param name: Parameter name, used in error messages.
+    :return: The number, duration, curve or dictionary the parameter holds.
+    :raises ValueError: If ``value`` is not an object or has unknown units.
+    """
     if not isinstance(value, Mapping):
         raise ValueError(f"Parameter '{name}' must be an object, not {value!r}")
 
@@ -319,7 +354,15 @@ def _parse_value(value: Any, base_dir: Path, name: str) -> Any:
 def _read_curve(
     value: Mapping, base_dir: Path, name: str
 ) -> ElevationStorage | StorageDischarge:
-    """Read a rating curve from the CSV file and columns named in ``value``."""
+    """Read a rating curve from the CSV file and columns named in ``value``.
+
+    :param value: Curve parameter with ``path`` and ``<x>_column_name`` keys.
+    :param base_dir: Directory ``path`` is relative to.
+    :param name: Parameter name, used in error messages.
+    :return: The curve; its class depends on which columns are named.
+    :raises ValueError: If the column names do not form a known curve or are
+        not in the file.
+    """
     columns = {
         key.removesuffix("_column_name"): column
         for key, column in value.items()

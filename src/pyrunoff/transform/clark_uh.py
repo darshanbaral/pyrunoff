@@ -1,3 +1,5 @@
+"""Clark unit-hydrograph transform method."""
+
 from dataclasses import dataclass
 from datetime import timedelta
 
@@ -7,18 +9,21 @@ import pandas
 from pyrunoff.utils import (
     DischargeSeries,
     RainfallSeries,
-    validate_positive,
-    validate_series_type,
+    _validate_positive,
+    _validate_series_type,
 )
 from pyrunoff.utils.compat import jit
 from pyrunoff.utils.constants import SECONDS_PER_HOUR
-from pyrunoff.utils.tso import check_time_step
+from pyrunoff.utils.time_series import _check_time_step
 
 
 @dataclass(slots=True)
 class ClarkUh:
     """
     Transform excess rainfall into discharge using a Clark unit hydrograph.
+
+    Rainfall is resampled to ``compute_time_step`` before routing, keeping its
+    total depth.
 
     :param rainfall_series: Incremental excess rainfall in inches.
     :param basin_area: Drainage area in acres.
@@ -40,16 +45,22 @@ class ClarkUh:
 
     def __post_init__(self):
         """Validate the basin parameters and prepare rainfall for routing."""
-        validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
-        validate_positive(self.basin_area, "basin_area")
+        _validate_series_type(self.rainfall_series, RainfallSeries, "rainfall_series")
+        _validate_positive(self.basin_area, "basin_area")
         self._fix_end()
         self.update_params(self.tc, self.storage_r)
-        self.validate_compute_time_step()
+        self._validate_compute_time_step()
         self._resample_data()
 
     @staticmethod
-    def validate_tc(tc: pandas.Timedelta, time_step: pandas.Timedelta) -> None:
-        """Require a positive concentration time no shorter than the time step."""
+    def _validate_tc(tc: pandas.Timedelta, time_step: pandas.Timedelta) -> None:
+        """Require a positive concentration time no shorter than the time step.
+
+        :param tc: Basin time of concentration.
+        :param time_step: Computation interval.
+        :raises ValueError: If ``tc`` is not positive or is shorter than
+            ``time_step``.
+        """
         if tc.total_seconds() <= 0:
             raise ValueError("Time of Concentration (tc) must be greater than zero.")
 
@@ -60,10 +71,16 @@ class ClarkUh:
             )
 
     @staticmethod
-    def validate_storage_r(
+    def _validate_storage_r(
         storage_r: pandas.Timedelta, time_step: pandas.Timedelta
     ) -> None:
-        """Require a positive storage coefficient within the stability limit."""
+        """Require a positive storage coefficient within the stability limit.
+
+        :param storage_r: Linear-reservoir storage coefficient.
+        :param time_step: Computation interval.
+        :raises ValueError: If ``storage_r`` is not positive or ``time_step`` is
+            not less than ``2 * storage_r``.
+        """
         if storage_r.total_seconds() <= 0:
             raise ValueError(
                 "Storage Coefficient (storage_r) must be greater than zero."
@@ -82,20 +99,31 @@ class ClarkUh:
         tc: pandas.Timedelta | None = None,
         storage_r: pandas.Timedelta | None = None,
     ):
-        """Validate and update any supplied routing parameters."""
+        """Validate and update any supplied routing parameters.
+
+        Parameters left as ``None`` keep their current values.
+
+        :param tc: Basin time of concentration.
+        :param storage_r: Linear-reservoir storage coefficient.
+        :raises ValueError: If a supplied value is invalid for the time step.
+        """
         time_step = self.compute_time_step or self.rainfall_series.time_step
         if tc is not None:
-            self.validate_tc(tc, time_step)
+            self._validate_tc(tc, time_step)
             self.tc = pandas.to_timedelta(tc)
 
         if storage_r is not None:
-            self.validate_storage_r(storage_r, time_step)
+            self._validate_storage_r(storage_r, time_step)
             self.storage_r = pandas.to_timedelta(storage_r)
 
-    def validate_compute_time_step(
+    def _validate_compute_time_step(
         self,
     ) -> None:
-        """Validate the optional rainfall resampling interval."""
+        """Validate the optional rainfall resampling interval.
+
+        :raises ValueError: If ``compute_time_step`` is not positive, does not
+            divide the rainfall time step, or is not a whole number of minutes.
+        """
         if self.compute_time_step is not None:
             self.compute_time_step = pandas.Timedelta(self.compute_time_step)
             if self.compute_time_step <= pandas.Timedelta(0):
@@ -106,7 +134,7 @@ class ClarkUh:
                     f"original time step ({self.rainfall_series.time_step}) must be a "
                     f"multiple of compute_time_step ({self.compute_time_step})."
                 )
-            check_time_step(self.compute_time_step, name="compute_time_step")
+            _check_time_step(self.compute_time_step, name="compute_time_step")
 
     def _resample_data(self):
         """Cache rainfall resampled to the configured computation interval."""
@@ -121,8 +149,17 @@ class ClarkUh:
             self.rainfall_series = self.rainfall_series.fix_end(self.end)
 
     @staticmethod
-    def get_cumulative_area_fraction(time_step: pandas.Timedelta, tc: pandas.Timedelta):
-        """Calculate the cumulative basin area contributing by each time step."""
+    def _get_cumulative_area_fraction(
+        time_step: pandas.Timedelta, tc: pandas.Timedelta
+    ):
+        """Calculate the cumulative basin area contributing by each time step.
+
+        Uses the HEC-HMS default time-area curve.
+
+        :param time_step: Computation interval.
+        :param tc: Basin time of concentration.
+        :return: Cumulative area fraction, from 0 at time zero to 1 at ``tc``.
+        """
         time_step_mins = int(time_step.total_seconds() // 60)
 
         tc_mins = int(tc.total_seconds() // 60.0)
@@ -150,10 +187,18 @@ class ClarkUh:
         storage_r: pandas.Timedelta,
         time_step: pandas.Timedelta,
     ):
-        """Calculate Clark unit-hydrograph ordinates for the basin parameters."""
+        """Calculate Clark unit-hydrograph ordinates for the basin parameters.
+
+        :param basin_area: Drainage area in acres.
+        :param tc: Basin time of concentration.
+        :param storage_r: Linear-reservoir storage coefficient.
+        :param time_step: Computation interval.
+        :return: Discharge per inch of excess rainfall, in cubic feet per
+            second, at each step.
+        """
         time_step_secs = time_step.total_seconds()
 
-        cumulative_area_fraction = ClarkUh.get_cumulative_area_fraction(time_step, tc)
+        cumulative_area_fraction = ClarkUh._get_cumulative_area_fraction(time_step, tc)
         num_steps = cumulative_area_fraction.size
 
         total_volume = basin_area * 43560 / 12  # cubic feet
@@ -191,6 +236,10 @@ class ClarkUh:
 
         :param return_at_computed_timestep: If true, return values at the
             computation interval; otherwise, use the original rainfall interval.
+            Because the first rainfall value covers the interval before the
+            first timestamp, output at the computation interval starts inside
+            that interval (14 minutes before the first timestamp for
+            15-minute rainfall at the default one-minute step).
         :return: Routed discharge series.
         """
 
@@ -206,7 +255,7 @@ class ClarkUh:
             else self.rainfall_series.time_step
         )
         tc = self.tc
-        check_time_step(time_step, tc)
+        _check_time_step(time_step, tc)
 
         uh_ordinates = self.get_uh(self.basin_area, tc, self.storage_r, time_step)
 
@@ -241,7 +290,20 @@ def _clark_reservoir_kernel(
     total_volume,
     max_steps,
 ):
-    """Route translation inflow through the linear-reservoir component."""
+    """Route translation inflow through the linear-reservoir component.
+
+    Routing continues past the inflow until 99.9% of ``total_volume`` has left
+    the reservoir or ``max_steps`` is reached.
+
+    :param translation_inflow: Translated inflow per step in cubic feet per
+        second.
+    :param inflow_weight: Inflow routing coefficient.
+    :param outflow_weight: Previous-outflow routing coefficient.
+    :param time_step_secs: Time step in seconds.
+    :param total_volume: Runoff volume of one inch over the basin, in cubic feet.
+    :param max_steps: Maximum number of ordinates to compute.
+    :return: Unit-hydrograph ordinates and the routed volume in cubic feet.
+    """
     idx = 0
     running_volume = 0.0
     previous_uh_outflow = 0.0

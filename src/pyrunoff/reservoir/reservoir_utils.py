@@ -1,9 +1,11 @@
+"""Rating curves used by reservoir routing."""
+
 from dataclasses import dataclass
 
 import pandas
 
 
-def check_series_pair(
+def _check_series_pair(
     series1: pandas.Series,
     series2: pandas.Series,
     name1: str,
@@ -18,6 +20,9 @@ def check_series_pair(
     :param series2: Series checked for type and matching length.
     :param name1: Label used for errors related to the first series.
     :param name2: Label used for errors related to the second series.
+    :raises TypeError: If either input is not a pandas Series.
+    :raises ValueError: If the first series is not unique and increasing, or
+        the lengths differ.
     """
     if not isinstance(series1, pandas.Series):
         raise TypeError(f"{name1} must be a pandas Series")
@@ -50,7 +55,7 @@ class ElevationStorage:
 
     def __post_init__(self):
         """Validate the elevation and storage series."""
-        check_series_pair(self.elevation, self.storage, "elevation", "storage")
+        _check_series_pair(self.elevation, self.storage, "elevation", "storage")
 
 
 @dataclass(slots=True)
@@ -66,4 +71,4 @@ class StorageDischarge:
 
     def __post_init__(self):
         """Validate the storage and discharge series."""
-        check_series_pair(self.storage, self.discharge, "storage", "discharge")
+        _check_series_pair(self.storage, self.discharge, "storage", "discharge")
