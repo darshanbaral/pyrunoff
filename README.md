@@ -10,7 +10,7 @@ Documentation: <https://darshanbaral.github.io/pyrunoff/>
 
 We recommend installing with `uv` for a fast, reproducible Python environment.
 
-The current PyPI release is `0.1.0a1`, an alpha release, and requires Python 3.14 or later. `pip` commands include `--pre` to select this prerelease.
+The current PyPI release is an alpha release, and requires Python 3.14 or later. `pip` commands include `--pre` to select this prerelease.
 
 ### Recommended: Install with Numba acceleration
 
